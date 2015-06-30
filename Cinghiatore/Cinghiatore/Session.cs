@@ -174,6 +174,8 @@ namespace Cinghiatore
         public bool Tare()
         {
             arduino.Write("t");
+            Reset();
+            Start();
             return true;
         }
 

@@ -6,6 +6,7 @@ using System.IO.Ports;
 using System.IO;
 using System.Drawing;
 using System.Threading;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Cinghiatore
 {
@@ -15,19 +16,13 @@ namespace Cinghiatore
 
         public  SerialPort arduino = new SerialPort();
         List<Tuple<double, double>> values = new List<Tuple<double, double>>();
-        double max = 0;
-        double min = 0;
 
         bool saved = false;
-        public  int esercizi = 0;
 
         public static Color chartColor = Color.FromArgb(30, 144, 255);
         public static Color inRangeColor = Color.FromArgb(40, 143, 43);
         public static Color outRangeColor = Color.FromArgb(200, 20, 20);
 
-        public int secondi = 0;
-        public  int minuti = 0;
-         
         public Form1()
         {
             CheckForIllegalCrossThreadCalls = false;
@@ -39,7 +34,7 @@ namespace Cinghiatore
         {
             if (Session.SessionInstance.Mode == 1)
             {
-                if (e.Value.Item2 > -1.5 && e.Value.Item2 < 1.5)
+                if (e.Value[1] > -1.5 && e.Value[1] < 1.5)
                 {
                     chart1.Series[0].Color = inRangeColor;
                 }
@@ -60,16 +55,13 @@ namespace Cinghiatore
             }
 
 
-            chart1.Series[0].Points.AddXY(e.Value.Item1 / 1000, e.Value.Item2);
+            chart1.Series[0].Points.AddXY(e.Value[0] / 1000, e.Value[1]);
 
             time.Text = Session.SessionInstance.tempo();
 
-            curVal.Text = Convert.ToString(e.Value.Item2);
+            curVal.Text = Convert.ToString(e.Value[1]);
 
-           //chart1.ChartAreas[0].AxisY.Maximum = Convert.ToInt32(Session.SessionInstance.maxVal() + 3);
-           //chart1.ChartAreas[0].AxisY.Minimum = Convert.ToInt32(chart1.Series[0].Points[chart1.Series[0].Points.FindMinByValue()].YValues - 3);
-
-            maxVal.Text = Session.SessionInstance.maxVal().ToString();
+            //maxVal.Text = Session.SessionInstance.maxVal().ToString();
              
         }
 
@@ -139,8 +131,8 @@ namespace Cinghiatore
         {
             Session.SessionInstance.Stop();
 
-            Form Form3 = new Resoconto(Session.SessionInstance.minVal(), Session.SessionInstance.maxVal(), Session.SessionInstance.average(), Session.SessionInstance.tempo(), Session.SessionInstance.values);
-            Form3.Show();
+            //Form Form3 = new Resoconto(Session.SessionInstance.minVal(), Session.SessionInstance.maxVal(), Session.SessionInstance.average(), Session.SessionInstance.tempo(), Session.SessionInstance.values);
+            //Form3.Show();
         }
 
         private void tareBtn_Click(object sender, EventArgs e)
@@ -148,6 +140,7 @@ namespace Cinghiatore
             try
             {
                 Session.SessionInstance.Tare();
+                chart1.Series[0].Points.Clear();
             }
             catch (Exception ex)
             {

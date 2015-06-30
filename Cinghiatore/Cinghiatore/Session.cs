@@ -63,24 +63,30 @@ namespace Cinghiatore
             serialHandler.Interval = 200;
             serialHandler.Elapsed += serialHandler_Elapsed;
             watch = new Stopwatch();
+            arduino.DataReceived += arduino_DataReceived;
         }
 
-        void serialHandler_Elapsed(object sender, ElapsedEventArgs e)
+        void arduino_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            double val = Read();
+
+            double val = Convert.ToDouble(((SerialPort)sender).ReadLine().Replace(".", ","));
             double time = watch.ElapsedMilliseconds;
 
             values.Add(new Tuple<double, double>(time, val));
-            onNewData(this, new SerialEventArgs(new Tuple<double, double>(time, val)));
+            onNewData(this, new SerialEventArgs(new double[] { time, val }));
 
             if (watch.Elapsed.Ticks >= Time.Ticks)
                 Stop();
         }
 
-        double Read()
+        void serialHandler_Elapsed(object sender, ElapsedEventArgs e)
         {
-                arduino.Write("r");
-                return Convert.ToDouble(arduino.ReadLine().Replace(".", ","));
+            Read();
+        }
+
+        void Read()
+        {
+            arduino.Write("r");
         }
 
         public string tempo()
@@ -142,6 +148,8 @@ namespace Cinghiatore
             values.Clear();
         }
 
+
+      // DA SISTEMARE
         double readAverage(int reads)
         {
             double tmp = 0.0;
@@ -191,9 +199,9 @@ namespace Cinghiatore
 
     public class SerialEventArgs : EventArgs
     {
-        public Tuple<double, double> Value { get; set; }
+        public double[] Value { get; set; }
 
-        public SerialEventArgs(Tuple<double, double> val)
+        public SerialEventArgs(double[] val)
         {
             Value = val;
         }

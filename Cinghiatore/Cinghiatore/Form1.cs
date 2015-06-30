@@ -67,7 +67,7 @@ namespace Cinghiatore
             curVal.Text = Convert.ToString(e.Value.Item2);
 
            //chart1.ChartAreas[0].AxisY.Maximum = Convert.ToInt32(Session.SessionInstance.maxVal() + 3);
-           //chart1.ChartAreas[0].AxisY.Minimum = Convert.ToInt32(Session.SessionInstance.minVal() - 3);
+           //chart1.ChartAreas[0].AxisY.Minimum = Convert.ToInt32(chart1.Series[0].Points[chart1.Series[0].Points.FindMinByValue()].YValues - 3);
 
             maxVal.Text = Session.SessionInstance.maxVal().ToString();
              
@@ -92,59 +92,6 @@ namespace Cinghiatore
                 button1.Enabled = true;
             }
 
-        }
-
-        private void taimer_Tick(object sender, EventArgs e)
-        {
-            /*
-            double val = Collect();
-            values.Add(new Tuple<double, double>(watch.ElapsedMilliseconds, val));
-
-            if(minuti == 0 && secondi == 0)
-                tempo(false);
-            else
-                tempo(true);
-
-            if (esercizi == 1)
-            {
-                if(values[values.Count - 1].Item2 > -1.5 && values[values.Count - 1].Item2 < 1.5){
-                    chart1.Series[0].Color = inRangeColor;
-                }
-                else
-                {
-                    chart1.Series[0].Color = outRangeColor;
-                }
-               
-            }
-            else if (esercizi == 2)
-            {
-                chart1.Series[0].Color = chartColor;
-
-            }
-            else if(esercizi == 0)
-            {
-                chart1.Series[0].Color = chartColor;
-            }
-
-            chart1.Series[0].Points.AddXY(values[values.Count - 1].Item1/1000, values[values.Count - 1].Item2);
-            curVal.Text = val.ToString();
-
-
-            if (val > max)
-            {
-                max = val;
-
-                chart1.ChartAreas[0].AxisY.Maximum = Convert.ToInt32(max + 3);
-
-            }
-
-            if (val < min)
-            {
-                min = val;
-                chart1.ChartAreas[0].AxisY.Minimum = Convert.ToInt32(min - 3);
-            }
-            maxVal.Text = max.ToString();
-            */
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -200,10 +147,7 @@ namespace Cinghiatore
         {
             try
             {
-                Session.SessionInstance.Stop();
                 Session.SessionInstance.Tare();
-                Thread.Sleep(40);
-                Session.SessionInstance.Start();
             }
             catch (Exception ex)
             {

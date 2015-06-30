@@ -79,15 +79,8 @@ namespace Cinghiatore
 
         double Read()
         {
-            try
-            {
                 arduino.Write("r");
                 return Convert.ToDouble(arduino.ReadLine().Replace(".", ","));
-            }
-            catch (Exception ex)
-            {
-                throw new IOException(ex.Message);
-            }
         }
 
         public string tempo()
@@ -172,7 +165,7 @@ namespace Cinghiatore
 
         public bool Tare()
         {
-            arduino.WriteLine("t");
+            arduino.Write("t");
             return true;
         }
 

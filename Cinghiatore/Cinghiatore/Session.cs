@@ -154,20 +154,6 @@ namespace Cinghiatore
             values.Clear();
         }
 
-
-      // DA SISTEMARE
-        double readAverage(int reads)
-        {
-            double tmp = 0.0;
-
-            for (int i = 0; i < reads; i++)
-            {
-                arduino.Write("r");
-                tmp += Convert.ToDouble(arduino.ReadLine().Replace(".", ","));
-            }
-            return tmp / reads;
-        }
-
         public bool Save(string path)
         {
             File.AppendAllText(path, String.Format("Tempo [ms];Forza [Kg];Media[Kg]\n;;{0:0.00}", Math.Round(average(), 2)));

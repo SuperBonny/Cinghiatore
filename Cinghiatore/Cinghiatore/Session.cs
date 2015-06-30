@@ -43,7 +43,7 @@ namespace Cinghiatore
         public event EventHandler<SerialEventArgs> onNewData;
 
         SerialPort arduino = new SerialPort();
-        public List<Tuple<double, double>> values = new List<Tuple<double, double>>();
+        public List<double[]> values = new List<double[]>();
 
         //Singleton Pattern
         static Session instance;
@@ -72,7 +72,7 @@ namespace Cinghiatore
             double val = Convert.ToDouble(((SerialPort)sender).ReadLine().Replace(".", ","));
             double time = watch.ElapsedMilliseconds;
 
-            values.Add(new Tuple<double, double>(time, val));
+            values.Add(new double[] { time, val });
             onNewData(this, new SerialEventArgs(new double[] { time, val }));
 
             if (watch.Elapsed.Ticks >= Time.Ticks)
@@ -166,8 +166,8 @@ namespace Cinghiatore
         {
             File.AppendAllText(path, String.Format("Tempo [ms];Forza [Kg];Media[Kg]\n;;{0:0.00}", Math.Round(average(), 2)));
 
-            foreach (Tuple<double, double> val in values)
-                File.AppendAllText(path, Math.Round(val.Item1 / 1000, 2) + ";" + val.Item2 + Environment.NewLine);
+            foreach (double[] val in values)
+                File.AppendAllText(path, Math.Round(val[0] / 1000, 2) + ";" + val[1] + Environment.NewLine);
             return true;
         }
 
@@ -181,9 +181,9 @@ namespace Cinghiatore
         {
             double tmp = 0.0;
 
-            foreach (Tuple<double, double> val in values)
+            foreach (double[] val in values)
             {
-                tmp += val.Item2;
+                tmp += val[1];
             }
 
             return Math.Round(tmp / values.Count, 2);

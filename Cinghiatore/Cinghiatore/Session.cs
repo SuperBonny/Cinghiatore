@@ -25,6 +25,20 @@ namespace Cinghiatore
         public int Mode { get; set; }
         public TimeSpan Time { get; set; }
         public bool IsCountDown { get; set; }
+        public bool IsStarted
+        {
+            get
+            {
+                return serialHandler.Enabled;
+            }
+            set
+            {
+                if (value)
+                    Stop();
+                else
+                    Start();
+            }
+        }
         public double Interval
         {
             get
@@ -124,14 +138,6 @@ namespace Cinghiatore
         {
             serialHandler.Start();
             watch.Start();
-        }
-
-        public bool Started()
-        {
-            if (watch.ElapsedTicks > 0)
-                return true;
-            else
-                return false;
         }
 
         public void Stop()

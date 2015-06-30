@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.IO.Ports;
 using System.IO;
 using System.Drawing;
-using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Cinghiatore
@@ -52,14 +52,13 @@ namespace Cinghiatore
                 chart1.Series[0].Color = chartColor;
             }
 
-
-            chart1.Series[0].Points.AddXY(e.Value[0] / 1000, e.Value[1]);
+            Task.Factory.StartNew(() => chart1.Series[0].Points.AddXY(e.Value[0] / 1000, e.Value[1]));
 
             time.Text = Session.SessionInstance.tempo();
 
             curVal.Text = Convert.ToString(e.Value[1]);
 
-            //maxVal.Text = Session.SessionInstance.maxVal().ToString();
+            //maxVal.Text = Convert.ToString(Max);//Session.SessionInstance.maxVal().ToString();
              
         }
 

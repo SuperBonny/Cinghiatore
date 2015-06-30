@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
-using System.Threading.Tasks;
-using System.Diagnostics;
 using System.Timers;
 
 namespace Cinghiatore
@@ -24,7 +21,7 @@ namespace Cinghiatore
                 arduino.BaudRate = value;
             }
         }
-
+        
         public int Mode { get; set; }
         public TimeSpan Time { get; set; }
         public bool IsCountDown { get; set; }
@@ -47,7 +44,6 @@ namespace Cinghiatore
 
         SerialPort arduino = new SerialPort();
         public List<Tuple<double, double>> values = new List<Tuple<double, double>>();
-        double max, min;
 
         //Singleton Pattern
         static Session instance;
@@ -67,8 +63,6 @@ namespace Cinghiatore
             serialHandler.Interval = 200;
             serialHandler.Elapsed += serialHandler_Elapsed;
             watch = new Stopwatch();
-            max = int.MinValue;
-            min = int.MinValue;
         }
 
         void serialHandler_Elapsed(object sender, ElapsedEventArgs e)
@@ -81,12 +75,6 @@ namespace Cinghiatore
 
             if (watch.Elapsed.Ticks >= Time.Ticks)
                 Stop();
-
-            if (val > max)
-                max = val;
-
-            if (val < min)
-                min = val;
         }
 
         double Read()
@@ -159,7 +147,18 @@ namespace Cinghiatore
             serialHandler.Stop();
             watch.Reset();
             values.Clear();
-            max = int.MinValue;
+        }
+
+        double readAverage(int reads)
+        {
+            double tmp = 0.0;
+
+            for (int i = 0; i < reads; i++)
+            {
+                arduino.Write("r");
+                tmp += Convert.ToDouble(arduino.ReadLine().Replace(".", ","));
+            }
+            return tmp / reads;
         }
 
         public bool Save(string path)
@@ -177,18 +176,6 @@ namespace Cinghiatore
             return true;
         }
 
-        double readAverage(int reads)
-        {
-            double tmp = 0.0;
-
-            for (int i = 0; i < reads; i++)
-            {
-                arduino.Write("r");
-                tmp += Convert.ToDouble(arduino.ReadLine().Replace(".", ","));
-            }
-            return tmp / reads;
-        }
-
         public double average()
         {
             double tmp = 0.0;
@@ -199,16 +186,6 @@ namespace Cinghiatore
             }
 
             return Math.Round(tmp / values.Count, 2);
-        }
-
-        public double maxVal()
-        {
-            return max;
-        }
-
-        public double minVal()
-        {
-            return min;
         }
     }
 

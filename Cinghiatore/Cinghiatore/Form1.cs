@@ -17,8 +17,6 @@ namespace Cinghiatore
         public  SerialPort arduino = new SerialPort();
         List<Tuple<double, double>> values = new List<Tuple<double, double>>();
 
-        bool saved = false;
-
         public static Color chartColor = Color.FromArgb(30, 144, 255);
         public static Color inRangeColor = Color.FromArgb(40, 143, 43);
         public static Color outRangeColor = Color.FromArgb(200, 20, 20);
@@ -71,7 +69,7 @@ namespace Cinghiatore
         {
             //Session.SessionInstance.Mode = (int)SessionMode.Libero;
 
-            if (Session.SessionInstance.IsStarted())
+            if (Session.SessionInstance.IsStarted)
             {
                 Session.SessionInstance.Stop();
                 startBtn.Text = "Start";
@@ -109,7 +107,7 @@ namespace Cinghiatore
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            if (Session.SessionInstance.IsStarted())
+            if (Session.SessionInstance.IsStarted)
             {
                 var c = MessageBox.Show("Aprire le impostazioni?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
 

@@ -58,7 +58,7 @@ namespace Cinghiatore
 
             curVal.Text = Convert.ToString(e.Value[1]);
 
-            //maxVal.Text = Convert.ToString(Max);//Session.SessionInstance.maxVal().ToString();
+            maxVal.Text = Session.SessionInstance.Max.ToString();
              
         }
 
@@ -66,8 +66,6 @@ namespace Cinghiatore
 
         private void startBtn_Click(object sender, EventArgs e)
         {
-            //Session.SessionInstance.Mode = (int)SessionMode.Libero;
-
             if (Session.SessionInstance.IsStarted)
             {
                 Session.SessionInstance.Stop();

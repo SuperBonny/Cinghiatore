@@ -7,7 +7,7 @@ using System.Timers;
 
 namespace Cinghiatore
 {
-  public class Session
+    public class Session
     {
         public string Port { get; set; }
         public int BaudRate
@@ -21,22 +21,19 @@ namespace Cinghiatore
                 arduino.BaudRate = value;
             }
         }
-        
+
         public int Mode { get; set; }
         public TimeSpan Time { get; set; }
+
+        double max, min;
+        public double Max { get { return max; } }
+        public double Min { get { return min; } }
         public bool IsCountDown { get; set; }
         public bool IsStarted
         {
             get
             {
                 return serialHandler.Enabled;
-            }
-            set
-            {
-                if (value)
-                    Stop();
-                else
-                    Start();
             }
         }
         public double Interval
@@ -75,8 +72,10 @@ namespace Cinghiatore
         {
             serialHandler = new Timer();
             serialHandler.Interval = 200;
-            serialHandler.Elapsed += serialHandler_Elapsed;
             watch = new Stopwatch();
+            max = double.MinValue;
+            min = double.MaxValue;
+            serialHandler.Elapsed += serialHandler_Elapsed;
             arduino.DataReceived += arduino_DataReceived;
         }
 
@@ -88,6 +87,11 @@ namespace Cinghiatore
 
             values.Add(new double[] { time, val });
             onNewData(this, new SerialEventArgs(new double[] { time, val }));
+
+            if (val > max)
+                max = val;
+            if (val < min)
+                min = val;
 
             if (watch.Elapsed.Ticks >= Time.Ticks)
                 Stop();
@@ -105,7 +109,7 @@ namespace Cinghiatore
 
         public string tempo()
         {
-            if(IsCountDown)
+            if (IsCountDown)
                 return String.Format("{0:00}:{1:00}", Time.Minutes - watch.Elapsed.Minutes, Time.Seconds - watch.Elapsed.Seconds);
             else
                 return String.Format("{0:00}:{1:00}", watch.Elapsed.Minutes, watch.Elapsed.Seconds);
@@ -176,9 +180,7 @@ namespace Cinghiatore
             double tmp = 0.0;
 
             foreach (double[] val in values)
-            {
                 tmp += val[1];
-            }
 
             return Math.Round(tmp / values.Count, 2);
         }
@@ -194,7 +196,6 @@ namespace Cinghiatore
     public class SerialEventArgs : EventArgs
     {
         public double[] Value { get; set; }
-
         public SerialEventArgs(double[] val)
         {
             Value = val;

@@ -21,12 +21,7 @@ namespace Cinghiatore
         public static int tabIndex = 0;
         private void Impostazioni_Load(object sender, EventArgs e)
         {
-            serialCombo.Items.Clear();
-
-            foreach (var item in SerialPort.GetPortNames())
-            {
-                serialCombo.Items.Add(item);
-            }
+            ReloadSerial();
 
             if (serialCombo.Items.IndexOf(Session.SessionInstance.Port) == 0)
                 serialCombo.SelectedItem = Session.SessionInstance.Port;
@@ -43,6 +38,14 @@ namespace Cinghiatore
             chartColorBox.BackColor = Form1.chartColor;
             outRangeColorBox.BackColor = Form1.outRangeColor;
             inRangeColorBox.BackColor = Form1.inRangeColor;
+        }
+
+        void ReloadSerial()
+        {
+            serialCombo.Items.Clear();
+            foreach (var item in SerialPort.GetPortNames())
+                serialCombo.Items.Add(item);
+            serialCombo.SelectedIndex = 0;
         }
 
         private void okBtn_Click(object sender, EventArgs e)
@@ -65,7 +68,7 @@ namespace Cinghiatore
                     Session.SessionInstance.IsCountDown = false;
                     Session.SessionInstance.Time = new TimeSpan(0, int.MaxValue, int.MaxValue);
                 }
-
+                Session.SessionInstance.Interval = intervalSel.Value;
                 tabIndex = 0;
                 this.Close();
             }
@@ -77,14 +80,7 @@ namespace Cinghiatore
 
         private void button4_Click(object sender, EventArgs e)
         {
-            serialCombo.Items.Clear();
-
-            foreach (var item in SerialPort.GetPortNames())
-            {
-                serialCombo.Items.Add(item);
-            }
-
-            serialCombo.SelectedIndex = 0;
+            ReloadSerial();
         }
 
         private void abortBtn_Click(object sender, EventArgs e)
@@ -136,6 +132,11 @@ namespace Cinghiatore
             {
                 MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void intervalSel_Scroll(object sender, EventArgs e)
+        {
+            intervalLbl.Text = "Intervallo di acquisizione: " + intervalSel.Value + "ms";
         }
     }
 }

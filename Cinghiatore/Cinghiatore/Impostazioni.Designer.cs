@@ -42,7 +42,6 @@
             this.minuti = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.eserciziBox = new System.Windows.Forms.ComboBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -55,8 +54,9 @@
             this.outRangeColorBox = new System.Windows.Forms.PictureBox();
             this.button3 = new System.Windows.Forms.Button();
             this.chartColorBox = new System.Windows.Forms.PictureBox();
-            this.intervalSel = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
+            this.intervalLbl = new System.Windows.Forms.Label();
+            this.intervalSel = new System.Windows.Forms.TrackBar();
+            this.eserciziBox = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -77,7 +77,7 @@
             // 
             this.serialCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.serialCombo.FormattingEnabled = true;
-            this.serialCombo.Location = new System.Drawing.Point(9, 58);
+            this.serialCombo.Location = new System.Drawing.Point(8, 48);
             this.serialCombo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.serialCombo.Name = "serialCombo";
             this.serialCombo.Size = new System.Drawing.Size(140, 28);
@@ -90,11 +90,11 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.baudCombo);
             this.groupBox1.Controls.Add(this.serialCombo);
-            this.groupBox1.Location = new System.Drawing.Point(9, 9);
+            this.groupBox1.Location = new System.Drawing.Point(8, 10);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(292, 212);
+            this.groupBox1.Size = new System.Drawing.Size(205, 173);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Seriale";
@@ -103,10 +103,10 @@
             // 
             this.button4.BackgroundImage = global::Cinghiatore.Properties.Resources.Refresh_icon;
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.Location = new System.Drawing.Point(189, 49);
+            this.button4.Location = new System.Drawing.Point(156, 48);
             this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(54, 49);
+            this.button4.Size = new System.Drawing.Size(28, 28);
             this.button4.TabIndex = 4;
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -114,7 +114,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 120);
+            this.label2.Location = new System.Drawing.Point(8, 81);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(86, 20);
@@ -124,7 +124,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 34);
+            this.label1.Location = new System.Drawing.Point(8, 24);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 20);
@@ -142,7 +142,7 @@
             "38400",
             "57600",
             "115200"});
-            this.baudCombo.Location = new System.Drawing.Point(9, 145);
+            this.baudCombo.Location = new System.Drawing.Point(8, 106);
             this.baudCombo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.baudCombo.Name = "baudCombo";
             this.baudCombo.Size = new System.Drawing.Size(140, 28);
@@ -164,7 +164,7 @@
             this.panel1.Controls.Add(this.okBtn);
             this.panel1.Controls.Add(this.abortBtn);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 228);
+            this.panel1.Location = new System.Drawing.Point(0, 242);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(584, 142);
@@ -183,23 +183,23 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.eserciziBox);
             this.groupBox2.Controls.Add(this.secondi);
             this.groupBox2.Controls.Add(this.minuti);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.eserciziBox);
-            this.groupBox2.Location = new System.Drawing.Point(9, 9);
+            this.groupBox2.Location = new System.Drawing.Point(8, 10);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox2.Size = new System.Drawing.Size(426, 128);
+            this.groupBox2.Size = new System.Drawing.Size(426, 187);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Generali";
             // 
             // secondi
             // 
-            this.secondi.Location = new System.Drawing.Point(338, 72);
+            this.secondi.Location = new System.Drawing.Point(369, 49);
             this.secondi.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.secondi.Maximum = new decimal(new int[] {
             59,
@@ -212,7 +212,7 @@
             // 
             // minuti
             // 
-            this.minuti.Location = new System.Drawing.Point(271, 72);
+            this.minuti.Location = new System.Drawing.Point(302, 49);
             this.minuti.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.minuti.Name = "minuti";
             this.minuti.Size = new System.Drawing.Size(58, 26);
@@ -221,7 +221,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(266, 47);
+            this.label4.Location = new System.Drawing.Point(297, 24);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 20);
@@ -231,26 +231,12 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 38);
+            this.label3.Location = new System.Drawing.Point(8, 24);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(123, 20);
             this.label3.TabIndex = 1;
             this.label3.Text = "Tipo di Esercizio";
-            // 
-            // eserciziBox
-            // 
-            this.eserciziBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.eserciziBox.FormattingEnabled = true;
-            this.eserciziBox.Items.AddRange(new object[] {
-            "Libero",
-            "Resistenza",
-            "Massimale"});
-            this.eserciziBox.Location = new System.Drawing.Point(9, 63);
-            this.eserciziBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.eserciziBox.Name = "eserciziBox";
-            this.eserciziBox.Size = new System.Drawing.Size(162, 28);
-            this.eserciziBox.TabIndex = 0;
             // 
             // tabControl1
             // 
@@ -264,45 +250,45 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(580, 226);
+            this.tabControl1.Size = new System.Drawing.Size(580, 240);
             this.tabControl1.TabIndex = 10;
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage1.Size = new System.Drawing.Size(817, 327);
+            this.tabPage1.Size = new System.Drawing.Size(572, 207);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Nerd";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage2.Controls.Add(this.groupBox2);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage2.Size = new System.Drawing.Size(572, 193);
+            this.tabPage2.Size = new System.Drawing.Size(572, 207);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Esercizi";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.label5);
-            this.tabPage3.Controls.Add(this.intervalSel);
+            this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage3.Controls.Add(this.intervalLbl);
             this.tabPage3.Controls.Add(this.groupBox3);
+            this.tabPage3.Controls.Add(this.intervalSel);
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(572, 180);
+            this.tabPage3.Size = new System.Drawing.Size(572, 207);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Generali";
-            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -382,29 +368,48 @@
             this.chartColorBox.TabIndex = 7;
             this.chartColorBox.TabStop = false;
             // 
+            // intervalLbl
+            // 
+            this.intervalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.intervalLbl.AutoSize = true;
+            this.intervalLbl.Location = new System.Drawing.Point(272, 94);
+            this.intervalLbl.Name = "intervalLbl";
+            this.intervalLbl.Size = new System.Drawing.Size(236, 20);
+            this.intervalLbl.TabIndex = 12;
+            this.intervalLbl.Text = "Intervallo di acquisizione: 200ms";
+            // 
             // intervalSel
             // 
-            this.intervalSel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.intervalSel.Location = new System.Drawing.Point(444, 39);
+            this.intervalSel.LargeChange = 50;
+            this.intervalSel.Location = new System.Drawing.Point(276, 45);
+            this.intervalSel.Maximum = 1000;
+            this.intervalSel.Minimum = 1;
             this.intervalSel.Name = "intervalSel";
-            this.intervalSel.Size = new System.Drawing.Size(120, 26);
-            this.intervalSel.TabIndex = 11;
+            this.intervalSel.Size = new System.Drawing.Size(209, 69);
+            this.intervalSel.SmallChange = 5;
+            this.intervalSel.TabIndex = 13;
+            this.intervalSel.TickFrequency = 100;
+            this.intervalSel.Value = 200;
+            this.intervalSel.Scroll += new System.EventHandler(this.intervalSel_Scroll);
             // 
-            // label5
+            // eserciziBox
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(225, 41);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(213, 20);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Intervallo di acquisizione [ms]";
+            this.eserciziBox.FormattingEnabled = true;
+            this.eserciziBox.ItemHeight = 20;
+            this.eserciziBox.Items.AddRange(new object[] {
+            "Libero",
+            "Massimale",
+            "Resistenza"});
+            this.eserciziBox.Location = new System.Drawing.Point(12, 49);
+            this.eserciziBox.Name = "eserciziBox";
+            this.eserciziBox.Size = new System.Drawing.Size(119, 124);
+            this.eserciziBox.TabIndex = 5;
             // 
             // Impostazioni
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 370);
+            this.ClientSize = new System.Drawing.Size(584, 384);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -449,7 +454,6 @@
         private System.Windows.Forms.NumericUpDown minuti;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox eserciziBox;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -463,7 +467,8 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.NumericUpDown intervalSel;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label intervalLbl;
+        private System.Windows.Forms.TrackBar intervalSel;
+        private System.Windows.Forms.ListBox eserciziBox;
     }
 }

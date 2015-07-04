@@ -83,43 +83,18 @@ namespace Cinghiatore
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            try
-            {
-               Session.SessionInstance.Connect("COM3", 115200);
-               Form Form2 = new Impostazioni();
-               Impostazioni.tabIndex = 1;
-               Form2.TopMost = true;
-               Form2.Show();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                Form Form2 = new Impostazioni();
-                Impostazioni.tabIndex = 0;
-                Form2.TopMost = true;
-                Form2.Show();
-            }
+            Impostazioni set = new Impostazioni();
+            set.ShowInTaskbar = false;
+            set.ShowDialog(this);
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void settingsBtn_Click(object sender, EventArgs e)
         {
-            if (Session.SessionInstance.IsStarted)
-            {
-                var c = MessageBox.Show("Aprire le impostazioni?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-
-                if (c == DialogResult.Yes)
-                {
-                    Session.SessionInstance.Stop();
-                    Form Form2 = new Impostazioni();
-                    Form2.Show();
-                }
-            }
-            else
-            {
-                Form Form2 = new Impostazioni();
-                Form2.Show();
-            }
+            Session.SessionInstance.Stop();
+            Impostazioni set = new Impostazioni();
+            set.ShowInTaskbar = false;
+            set.Owner = this;
+            set.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)

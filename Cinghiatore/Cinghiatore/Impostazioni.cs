@@ -13,6 +13,40 @@ namespace Cinghiatore
 {
     public partial class Impostazioni : Form
     {
+        int min, sec;
+        int Minutes { get { return min; } 
+            set { 
+                min = value; 
+                minLbl.Text = min.ToString();
+                if (min == 0)
+                    minDecr.Enabled = false;
+                else
+                    minDecr.Enabled = true;
+                if (min == 99)
+                {
+                    minIncr.Enabled = false;
+                    if (sec == 59)
+                        secIncr.Enabled = false;
+                    else
+                        secIncr.Enabled = true;
+                }
+                else
+                    minIncr.Enabled = true;
+            } }
+        int Seconds { get { return sec; } 
+            set { 
+                sec = value; 
+                secLbl.Text = sec.ToString();
+                if (sec == 0)
+                    secDecr.Enabled = false;
+                else
+                    secDecr.Enabled = true;
+                if (min == 99 && sec == 59)
+                    secIncr.Enabled = false;
+                else
+                    secIncr.Enabled = true;
+            } }
+
         public Impostazioni()
         {
             InitializeComponent();
@@ -21,23 +55,29 @@ namespace Cinghiatore
         public static int tabIndex = 0;
         private void Impostazioni_Load(object sender, EventArgs e)
         {
+            this.Owner.Enabled = false;
             ReloadSerial();
 
-            if (serialCombo.Items.IndexOf(Session.SessionInstance.Port) == 0)
-                serialCombo.SelectedItem = Session.SessionInstance.Port;
-            else
-                serialCombo.SelectedIndex = 0;
-
-            if (baudCombo.Items.IndexOf(Convert.ToString(Session.SessionInstance.BaudRate)) != 0)
+            if (Session.SessionInstance.IsCountDown)
             {
-                baudCombo.SelectedItem = Convert.ToString(Session.SessionInstance.BaudRate);
+                Minutes = Session.SessionInstance.Time.Minutes;
+                Seconds = Session.SessionInstance.Time.Seconds;
             }
             else
-                baudCombo.SelectedIndex = 0;
-            
+            {
+                Minutes = 0;
+                Seconds = 0;
+            }
+
+            exerciseBox.SelectedIndex = Session.SessionInstance.Mode;
+
+            intervalSel.Value = (int)Session.SessionInstance.Interval;
             chartColorBox.BackColor = Form1.chartColor;
             outRangeColorBox.BackColor = Form1.outRangeColor;
             inRangeColorBox.BackColor = Form1.inRangeColor;
+
+            serialCombo.SelectedItem = Session.SessionInstance.Port;
+            baudCombo.SelectedItem = Session.SessionInstance.BaudRate.ToString();
         }
 
         void ReloadSerial()
@@ -52,16 +92,14 @@ namespace Cinghiatore
         {
             try
             {
-                if (serialCombo.Text != Session.SessionInstance.Port || baudCombo.Text != Convert.ToString(Session.SessionInstance.BaudRate))
-                    Session.SessionInstance.Connect(serialCombo.Text, Convert.ToInt32(baudCombo.Text));
+                Session.SessionInstance.Connect(serialCombo.Text, Convert.ToInt32(baudCombo.Text));
 
-                if (eserciziBox.SelectedIndex != Session.SessionInstance.Mode)
-                    Session.SessionInstance.Mode = eserciziBox.SelectedIndex;
+                Session.SessionInstance.Mode = exerciseBox.SelectedIndex;
 
-                if (minuti.Value > 0 || secondi.Value > 0)
+                if (Minutes > 0 || Seconds > 0)
                 {
                     Session.SessionInstance.IsCountDown = true;
-                    Session.SessionInstance.Time = new TimeSpan(0, Convert.ToInt32(minuti.Value), Convert.ToInt32(secondi.Value));
+                    Session.SessionInstance.Time = new TimeSpan(0, Minutes, Seconds);
                 }
                 else
                 {
@@ -69,7 +107,6 @@ namespace Cinghiatore
                     Session.SessionInstance.Time = new TimeSpan(0, int.MaxValue, int.MaxValue);
                 }
                 Session.SessionInstance.Interval = intervalSel.Value;
-                tabIndex = 0;
                 this.Close();
             }
             catch (Exception ex)
@@ -85,23 +122,14 @@ namespace Cinghiatore
 
         private void abortBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try{
-
-                if (colorDialog1.ShowDialog() == DialogResult.OK)
-                    Form1.chartColor = colorDialog1.Color;
-
-                chartColorBox.BackColor = Form1.chartColor;
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+                Form1.chartColor = colorDialog1.Color;
+            chartColorBox.BackColor = Form1.chartColor;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -134,9 +162,44 @@ namespace Cinghiatore
             }
         }
 
-        private void intervalSel_Scroll(object sender, EventArgs e)
+        private void minIncr_Click(object sender, EventArgs e)
+        {
+            if (min < 99)
+                Minutes++;
+        }
+
+        private void minDecr_Click(object sender, EventArgs e)
+        {
+            if (min > 0)
+                Minutes--;
+        }
+
+        private void secIncr_Click(object sender, EventArgs e)
+        {
+            if (sec < 59)
+                Seconds++;
+            else
+                if (min < 99)
+                {
+                    Minutes++;
+                    Seconds = 0;
+                }
+        }
+
+        private void secDecr_Click(object sender, EventArgs e)
+        {
+            if (Seconds > 0)
+                Seconds--;
+        }
+
+        private void intervalSel_ValueChanged(object sender, EventArgs e)
         {
             intervalLbl.Text = "Intervallo di acquisizione: " + intervalSel.Value + "ms";
+        }
+
+        private void Impostazioni_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Owner.Enabled = true;
         }
     }
 }

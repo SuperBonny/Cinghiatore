@@ -38,7 +38,7 @@
             this.time = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.rstBtn = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.settingsBtn = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.maxVal = new System.Windows.Forms.Label();
@@ -54,10 +54,9 @@
             // 
             this.startBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.startBtn.Location = new System.Drawing.Point(770, 2);
-            this.startBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.startBtn.Location = new System.Drawing.Point(1155, 3);
             this.startBtn.Name = "startBtn";
-            this.startBtn.Size = new System.Drawing.Size(85, 102);
+            this.startBtn.Size = new System.Drawing.Size(128, 157);
             this.startBtn.TabIndex = 1;
             this.startBtn.Text = "Start";
             this.startBtn.UseVisualStyleBackColor = true;
@@ -72,7 +71,6 @@
             this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chart1.Location = new System.Drawing.Point(0, 0);
-            this.chart1.Margin = new System.Windows.Forms.Padding(2);
             this.chart1.Name = "chart1";
             series1.BorderWidth = 3;
             series1.ChartArea = "ChartArea1";
@@ -80,7 +78,7 @@
             series1.Color = System.Drawing.SystemColors.Highlight;
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(856, 402);
+            this.chart1.Size = new System.Drawing.Size(1284, 619);
             this.chart1.TabIndex = 2;
             this.chart1.Text = "chart1";
             // 
@@ -88,11 +86,9 @@
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.groupBox1.Controls.Add(this.curVal);
-            this.groupBox1.Location = new System.Drawing.Point(87, 8);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Location = new System.Drawing.Point(130, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(142, 90);
+            this.groupBox1.Size = new System.Drawing.Size(213, 138);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Valore Corrente [Kg]";
@@ -101,10 +97,9 @@
             // 
             this.curVal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.curVal.Font = new System.Drawing.Font("Impact", 41.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.curVal.Location = new System.Drawing.Point(2, 15);
-            this.curVal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.curVal.Location = new System.Drawing.Point(3, 22);
             this.curVal.Name = "curVal";
-            this.curVal.Size = new System.Drawing.Size(138, 73);
+            this.curVal.Size = new System.Drawing.Size(207, 113);
             this.curVal.TabIndex = 22;
             this.curVal.Text = "-00";
             this.curVal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -113,11 +108,9 @@
             // 
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.groupBox2.Controls.Add(this.time);
-            this.groupBox2.Location = new System.Drawing.Point(233, 8);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Location = new System.Drawing.Point(350, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(188, 90);
+            this.groupBox2.Size = new System.Drawing.Size(282, 138);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tempo";
@@ -126,10 +119,9 @@
             // 
             this.time.Dock = System.Windows.Forms.DockStyle.Fill;
             this.time.Font = new System.Drawing.Font("Impact", 41.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.time.Location = new System.Drawing.Point(2, 15);
-            this.time.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.time.Location = new System.Drawing.Point(3, 22);
             this.time.Name = "time";
-            this.time.Size = new System.Drawing.Size(184, 73);
+            this.time.Size = new System.Drawing.Size(276, 113);
             this.time.TabIndex = 23;
             this.time.Text = "00:00";
             this.time.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -137,7 +129,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.rstBtn);
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.settingsBtn);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.tareBtn);
@@ -145,43 +137,43 @@
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.startBtn);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 402);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Location = new System.Drawing.Point(0, 619);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(856, 106);
+            this.panel1.Size = new System.Drawing.Size(1284, 163);
             this.panel1.TabIndex = 6;
             // 
             // rstBtn
             // 
             this.rstBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rstBtn.Location = new System.Drawing.Point(586, 45);
+            this.rstBtn.Location = new System.Drawing.Point(879, 69);
+            this.rstBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rstBtn.Name = "rstBtn";
-            this.rstBtn.Size = new System.Drawing.Size(75, 23);
+            this.rstBtn.Size = new System.Drawing.Size(112, 35);
             this.rstBtn.TabIndex = 24;
             this.rstBtn.Text = "Reset";
             this.rstBtn.UseVisualStyleBackColor = true;
             this.rstBtn.Click += new System.EventHandler(this.rstBtn_Click);
             // 
-            // button2
+            // settingsBtn
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(586, 16);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 23;
-            this.button2.Text = "Impostazioni";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.settingsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.settingsBtn.Location = new System.Drawing.Point(879, 25);
+            this.settingsBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.settingsBtn.Name = "settingsBtn";
+            this.settingsBtn.Size = new System.Drawing.Size(112, 35);
+            this.settingsBtn.TabIndex = 23;
+            this.settingsBtn.Text = "Impostazioni";
+            this.settingsBtn.UseVisualStyleBackColor = true;
+            this.settingsBtn.Click += new System.EventHandler(this.settingsBtn_Click);
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(681, 2);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Location = new System.Drawing.Point(1022, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 102);
+            this.button1.Size = new System.Drawing.Size(128, 157);
             this.button1.TabIndex = 22;
             this.button1.Text = "Fine Sessione";
             this.button1.UseVisualStyleBackColor = true;
@@ -191,11 +183,9 @@
             // 
             this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.groupBox3.Controls.Add(this.maxVal);
-            this.groupBox3.Location = new System.Drawing.Point(425, 8);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Location = new System.Drawing.Point(638, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(142, 90);
+            this.groupBox3.Size = new System.Drawing.Size(213, 138);
             this.groupBox3.TabIndex = 21;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Valore Massimo [Kg]";
@@ -204,10 +194,9 @@
             // 
             this.maxVal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.maxVal.Font = new System.Drawing.Font("Impact", 41.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maxVal.Location = new System.Drawing.Point(2, 15);
-            this.maxVal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.maxVal.Location = new System.Drawing.Point(3, 22);
             this.maxVal.Name = "maxVal";
-            this.maxVal.Size = new System.Drawing.Size(138, 73);
+            this.maxVal.Size = new System.Drawing.Size(207, 113);
             this.maxVal.TabIndex = 23;
             this.maxVal.Text = "00";
             this.maxVal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -216,10 +205,9 @@
             // 
             this.tareBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.tareBtn.Location = new System.Drawing.Point(2, 2);
-            this.tareBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.tareBtn.Location = new System.Drawing.Point(3, 3);
             this.tareBtn.Name = "tareBtn";
-            this.tareBtn.Size = new System.Drawing.Size(85, 102);
+            this.tareBtn.Size = new System.Drawing.Size(128, 157);
             this.tareBtn.TabIndex = 6;
             this.tareBtn.Text = "Tara";
             this.tareBtn.UseVisualStyleBackColor = true;
@@ -227,12 +215,11 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(856, 508);
+            this.ClientSize = new System.Drawing.Size(1284, 782);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Cinghiatore";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -257,7 +244,7 @@
         private System.Windows.Forms.Label time;
         private System.Windows.Forms.Label maxVal;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button settingsBtn;
         private System.Windows.Forms.Button rstBtn;
         public System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }

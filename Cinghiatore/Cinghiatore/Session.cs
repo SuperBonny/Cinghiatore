@@ -71,17 +71,24 @@ namespace Cinghiatore
         Session()
         {
             serialHandler = new Timer();
-            serialHandler.Interval = 200;
             watch = new Stopwatch();
-            max = double.MinValue;
-            min = double.MaxValue;
             serialHandler.Elapsed += serialHandler_Elapsed;
             arduino.DataReceived += arduino_DataReceived;
+            SetDefaults();
+        }
+
+        void SetDefaults()
+        {
+            serialHandler.Interval = 200;
+            arduino.BaudRate = 115200;
+            Time = TimeSpan.Zero;
+            max = double.MinValue;
+            min = double.MaxValue;
+            Mode = 0;
         }
 
         void arduino_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-
             double val = Convert.ToDouble(((SerialPort)sender).ReadLine().Replace(".", ","));
             double time = watch.ElapsedMilliseconds;
 

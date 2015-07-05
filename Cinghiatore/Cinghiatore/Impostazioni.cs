@@ -124,7 +124,7 @@ namespace Cinghiatore
                     Session.SessionInstance.Time = new TimeSpan(0, int.MaxValue, int.MaxValue);
                 }
 
-                Properties.Settings.Default.Offset = OffLbl.Text;
+                Properties.Settings.Default.Offset = Convert.ToDouble(OffLbl.Text);
                 Properties.Settings.Default.Interval = intervalSel.Value;
                 Properties.Settings.Default.ChartColor = chartColorBox.BackColor;
                 Properties.Settings.Default.OutColor = outRangeColorBox.BackColor;

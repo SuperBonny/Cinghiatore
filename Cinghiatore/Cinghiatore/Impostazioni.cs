@@ -22,7 +22,7 @@ namespace Cinghiatore
                     minDecr.Enabled = false;
                 else
                     minDecr.Enabled = true;
-                if (min == 99)
+                if (min == 59)
                 {
                     minIncr.Enabled = false;
                     if (sec == 59)
@@ -41,7 +41,7 @@ namespace Cinghiatore
                     secDecr.Enabled = false;
                 else
                     secDecr.Enabled = true;
-                if (min == 99 && sec == 59)
+                if (min == 59 && sec == 59)
                     secIncr.Enabled = false;
                 else
                     secIncr.Enabled = true;
@@ -107,6 +107,7 @@ namespace Cinghiatore
                     Session.SessionInstance.Time = new TimeSpan(0, int.MaxValue, int.MaxValue);
                 }
                 Session.SessionInstance.Interval = intervalSel.Value;
+                Session.SessionInstance.Reset();
                 this.Close();
             }
             catch (Exception ex)
@@ -164,7 +165,7 @@ namespace Cinghiatore
 
         private void minIncr_Click(object sender, EventArgs e)
         {
-            if (min < 99)
+            if (min < 59)
                 Minutes++;
         }
 
@@ -179,7 +180,7 @@ namespace Cinghiatore
             if (sec < 59)
                 Seconds++;
             else
-                if (min < 99)
+                if (min < 59)
                 {
                     Minutes++;
                     Seconds = 0;

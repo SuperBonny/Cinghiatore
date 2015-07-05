@@ -129,7 +129,7 @@ namespace Cinghiatore
         public string GetTime()
         {
             if (IsCountDown)
-                return String.Format("{0:00}:{1:00}", Time.Minutes - watch.Elapsed.Minutes, Time.Seconds - watch.Elapsed.Seconds);
+                return String.Format("{0:00}:{1:00}", Time.Subtract(watch.Elapsed).Minutes, Time.Subtract(watch.Elapsed).Seconds);
             else
                 return String.Format("{0:00}:{1:00}", watch.Elapsed.Minutes, watch.Elapsed.Seconds);
         }

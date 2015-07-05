@@ -49,10 +49,14 @@ namespace Cinghiatore
                     if (!off.IsRunning)
                         off.Start();
                     chart1.Series[0].Color = outRangeColor;
+                    
                     if (off.ElapsedMilliseconds >= MaxOffTime)
                     {
-                        if(Session.SessionInstance.IsStarted)
-                            EndSession();
+                        if (Session.SessionInstance.IsStarted)
+                        {
+                            startBtn.PerformClick();
+                            //EndSession(); //non funzionaaanabnusdhfuhwaesjg allah akbarr!!!!!
+                        }
                     }
                 }
             }
@@ -76,9 +80,7 @@ namespace Cinghiatore
         private void startBtn_Click(object sender, EventArgs e)
         {
             if (Session.SessionInstance.IsStarted)
-            {
                 Session.SessionInstance.Stop();
-            }
             else
             {
                 if (Session.SessionInstance.Mode == SessionMode.Resistenza)
@@ -98,12 +100,13 @@ namespace Cinghiatore
                 }
                 try
                 {
-                Session.SessionInstance.Read();
+                    Session.SessionInstance.Read();
                 }
                 catch (InvalidOperationException ex)
                 {
                     ShowError(ex);
                 }
+
                 Session.SessionInstance.Start();
                 startBtn.Text = "Stop";
                 button1.Enabled = true;

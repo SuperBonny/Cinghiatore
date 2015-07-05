@@ -184,5 +184,10 @@ namespace Cinghiatore
         {
             MessageBox.Show(e.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            EndSession();
+        }
     }
 }

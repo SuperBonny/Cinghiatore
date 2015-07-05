@@ -114,7 +114,6 @@ namespace Cinghiatore
             inRangeColorBox.BackColor = Properties.Settings.Default.InColor;
             limitColorBox.BackColor = Properties.Settings.Default.LimitColor;
 
-
             exerciseBox.SelectedIndex = (int)Session.SessionInstance.Mode;
             baudCombo.SelectedItem = Session.SessionInstance.BaudRate.ToString();
 

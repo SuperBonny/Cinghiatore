@@ -113,6 +113,7 @@ namespace Cinghiatore
             outRangeColorBox.BackColor = Properties.Settings.Default.OutColor;
             inRangeColorBox.BackColor = Properties.Settings.Default.InColor;
             limitColorBox.BackColor = Properties.Settings.Default.LimitColor;
+            offSecond = Properties.Settings.Default.OffTime / 1000;
 
             exerciseBox.SelectedIndex = (int)Session.SessionInstance.Mode;
             baudCombo.SelectedItem = Session.SessionInstance.BaudRate.ToString();
@@ -153,6 +154,7 @@ namespace Cinghiatore
                 Properties.Settings.Default.OutColor = outRangeColorBox.BackColor;
                 Properties.Settings.Default.InColor = inRangeColorBox.BackColor;
                 Properties.Settings.Default.LimitColor = limitColorBox.BackColor;
+                Properties.Settings.Default.OffTime = offSec * 1000;
 
                 Session.SessionInstance.Port = serialCombo.Text;
                 Session.SessionInstance.BaudRate = Convert.ToInt32(baudCombo.Text);

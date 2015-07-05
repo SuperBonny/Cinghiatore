@@ -4,6 +4,7 @@ using System.IO.Ports;
 using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Cinghiatore
@@ -11,7 +12,7 @@ namespace Cinghiatore
     public partial class Form1 : Form
     {
         public int MaxOffTime { get; set; }
-        Thread off;
+        Stopwatch off;
         public  SerialPort arduino = new SerialPort();
 
         Color chartColor, inRangeColor, outRangeColor, limitColor;
@@ -33,27 +34,27 @@ namespace Cinghiatore
                 startBtn.Text = "Start";
         }
 
-        void OffChecker()
-        {
-            Thread.Sleep(MaxOffTime);
-            EndSession("Off range for more than " + MaxOffTime + " Seconds");
-        }
-
         void Session_NewData(object sender, SerialEventArgs e)
         {
             if (Session.SessionInstance.Mode == SessionMode.Resistenza)
             {
                 if (e.Value[1] > -offset && e.Value[1] < offset)
                 {
-                    if (off.IsAlive)
-                        off.Abort();
+                    if (off.IsRunning)
+                        off.Reset();
                     chart1.Series[0].Color = inRangeColor;
                 }
                 else
                 {
-                    off.Start();
+                    if (!off.IsRunning)
+                        off.Start();
                     chart1.Series[0].Color = outRangeColor;
-            }
+                    if (off.ElapsedMilliseconds >= MaxOffTime)
+                    {
+                        if(Session.SessionInstance.IsStarted)
+                            EndSession();
+                    }
+                }
             }
             else if (Session.SessionInstance.Mode == SessionMode.Massimale)
                 chart1.Series[0].Color = chartColor;
@@ -116,12 +117,13 @@ namespace Cinghiatore
             set.ShowInTaskbar = false;
             set.ShowDialog(this);
 
-            off = new Thread(OffChecker);
+            off = new Stopwatch();
             chartColor = Properties.Settings.Default.ChartColor;
             inRangeColor=Properties.Settings.Default.InColor;
             outRangeColor=Properties.Settings.Default.OutColor;
             limitColor = Properties.Settings.Default.LimitColor;
             offset=Properties.Settings.Default.Offset;
+            MaxOffTime = Properties.Settings.Default.OffTime;
             Session.SessionInstance.Interval = Properties.Settings.Default.Interval;
 
             Session.SessionInstance.Connect();

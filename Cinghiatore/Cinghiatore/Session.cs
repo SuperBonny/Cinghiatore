@@ -106,7 +106,8 @@ namespace Cinghiatore
             if (val < min)
                 min = val;
 
-            NewData(this, new SerialEventArgs(new double[] { time, val }));
+            if(IsStarted)
+                NewData(this, new SerialEventArgs(new double[] { time, val }));
 
             if (watch.Elapsed.Ticks >= Time.Ticks)
                 Stop();

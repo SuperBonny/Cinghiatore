@@ -93,7 +93,7 @@
             this.groupBox2.Size = new System.Drawing.Size(282, 138);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Tempo";
+            this.groupBox2.Text = "Tempo [s]";
             // 
             // time
             // 
@@ -168,7 +168,7 @@
             this.groupBox3.Size = new System.Drawing.Size(213, 138);
             this.groupBox3.TabIndex = 21;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Valore Massimo [Kg]";
+            this.groupBox3.Text = "Picco [Kg]";
             // 
             // maxVal
             // 

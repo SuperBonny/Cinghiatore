@@ -30,27 +30,20 @@ namespace Cinghiatore
 
         void Session_NewData(object sender, SerialEventArgs e)
         {
-            if (Session.SessionInstance.Mode == 1)
+            if (Session.SessionInstance.Mode == SessionMode.Resistenza)
             {
                 if (e.Value[1] > -1.5 && e.Value[1] < 1.5)
-                {
                     chart1.Series[0].Color = inRangeColor;
-                }
                 else
-                {
                     chart1.Series[0].Color = outRangeColor;
-                }
-
             }
-            else if (Session.SessionInstance.Mode == 2)
-            {
+            else if (Session.SessionInstance.Mode == SessionMode.Massimale)
+                chart1.Series[0].Color = chartColor;
+            else if (Session.SessionInstance.Mode == SessionMode.Libero)
                 chart1.Series[0].Color = chartColor;
 
-            }
-            else if (Session.SessionInstance.Mode == 0)
-            {
-                chart1.Series[0].Color = chartColor;
-            }
+            chart1.ChartAreas[0].AxisY.Maximum = Session.SessionInstance.Max + 2;
+            chart1.ChartAreas[0].AxisY.Minimum = Session.SessionInstance.Min - 2;
 
             Task.Factory.StartNew(() => chart1.Series[0].Points.AddXY(e.Value[0] / 1000, e.Value[1]));
 
@@ -67,16 +60,29 @@ namespace Cinghiatore
             {
                 Session.SessionInstance.Stop();
                 startBtn.Text = "Start";
-                button1.Enabled = false;
             }
             else
             {
+                if (Session.SessionInstance.Mode == SessionMode.Resistenza)
+                {
+                    StripLine str1 = new StripLine();
+                    str1.Interval = 0;
+                    str1.IntervalOffset = 1.5;
+                    str1.StripWidth = 0.1;
+                    str1.BackColor = Color.Black;
+                    chart1.ChartAreas[0].AxisY.StripLines.Add(str1);
+                    StripLine str2 = new StripLine();
+                    str2.Interval = 0;
+                    str2.IntervalOffset = -1.5;
+                    str2.StripWidth = 0.1;
+                    str2.BackColor = Color.Black;
+                    chart1.ChartAreas[0].AxisY.StripLines.Add(str2);
+                }
                 Session.SessionInstance.Read();
                 Session.SessionInstance.Start();
                 startBtn.Text = "Stop";
                 button1.Enabled = true;
             }
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -110,6 +116,7 @@ namespace Cinghiatore
             {
                 Session.SessionInstance.Tare();
                 chart1.Series[0].Points.Clear();
+                Session.SessionInstance.Read();
             }
             catch (Exception ex)
             {
@@ -123,6 +130,7 @@ namespace Cinghiatore
             {
                 Session.SessionInstance.Reset();
                 chart1.Series[0].Points.Clear();
+                button1.Enabled = false;
             }
             catch (Exception ex)
             {

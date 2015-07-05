@@ -20,10 +20,11 @@ namespace Cinghiatore
 
         bool Save(string path)
         {
-            File.AppendAllText(path, String.Format("Tempo [ms];Forza [Kg];Media[Kg]\n;;{0:0.00}", Math.Round(Session.SessionInstance.Average, 2)));
-
-            foreach (double[] val in Session.SessionInstance.Values)
-                File.AppendAllText(path, Math.Round(val[0] / 1000, 2) + ";" + val[1] + Environment.NewLine);
+            File.WriteAllText(path, "Tempo;Forza;Media" + Environment.NewLine + ";;" + Math.Round(Session.SessionInstance.Average, 2) + Environment.NewLine);
+            foreach (var item in Session.SessionInstance.Values)
+            {
+                File.AppendAllText(path, item[0] + ";" + item[1] + Environment.NewLine);
+            }
             return true;
         }
 
@@ -54,21 +55,15 @@ namespace Cinghiatore
         {
             Owner.Enabled = false;
             maxVal.Text = Session.SessionInstance.Max.ToString();
-            avgVal.Text = Session.SessionInstance.Average.ToString();
+            avgVal.Text = Math.Round(Session.SessionInstance.Average, 2).ToString();
 
             timer.Text = Session.SessionInstance.GetTime();
 
             //chart1.ChartAreas[0].AxisY.Maximum = max + 3; //da mettere if
             //chart1.ChartAreas[0].AxisY.Minimum = min - 3;
-
-            foreach (var item in Session.SessionInstance.Values)
-            {
-                chart1.Series[0].Points.AddXY(item[0] / 1000, item[1]);
-            }
-
             //chart1.Titles[0].Text = Convert.ToString(SessionMode)Session.SessionInstance.Mode)));
 
-            switch (Session.SessionInstance.Mode)
+            switch ((int)Session.SessionInstance.Mode)
             {
                 case 0:
                     chart1.Titles[0].Text = "Libero";
@@ -79,6 +74,17 @@ namespace Cinghiatore
                 case 2:
                     chart1.Titles[0].Text = "Resistenza";
                     break;
+            }
+
+            for (int i = 0; i < Session.SessionInstance.Values.Count; i++)
+            {
+                double avg = 0;
+                for (int g = 0; g < i; g++)
+                {
+                    avg += Session.SessionInstance.Values[g][1];
+                }
+                chart1.Series[0].Points.AddXY(Session.SessionInstance.Values[i][0] / 1000, Session.SessionInstance.Values[i][1]);
+                chart1.Series[1].Points.AddXY(Session.SessionInstance.Values[i][0] / 1000, avg / i);
             }
         }
 

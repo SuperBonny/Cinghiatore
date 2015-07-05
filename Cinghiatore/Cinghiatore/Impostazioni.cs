@@ -69,7 +69,7 @@ namespace Cinghiatore
             }
 
             intervalSel.Value = (int)Session.SessionInstance.Interval;
-            exerciseBox.SelectedIndex = Session.SessionInstance.Mode;
+            exerciseBox.SelectedIndex = (int)Session.SessionInstance.Mode;
 
             intervalSel.Value = (int)Session.SessionInstance.Interval;
             chartColorBox.BackColor = Form1.chartColor;
@@ -94,7 +94,7 @@ namespace Cinghiatore
             {
                 Session.SessionInstance.Connect(serialCombo.Text, Convert.ToInt32(baudCombo.Text));
 
-                Session.SessionInstance.Mode = exerciseBox.SelectedIndex;
+                Session.SessionInstance.Mode = (SessionMode)exerciseBox.SelectedIndex;
 
                 if (Minutes > 0 || Seconds > 0)
                 {

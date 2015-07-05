@@ -22,7 +22,7 @@ namespace Cinghiatore
             }
         }
 
-        public int Mode { get; set; }
+        public SessionMode Mode { get; set; }
         public TimeSpan Time { get; set; }
 
         double max, min;
@@ -86,16 +86,16 @@ namespace Cinghiatore
             serialHandler.Elapsed += serialHandler_Elapsed;
             arduino.DataReceived += arduino_DataReceived;
             SetDefaults();
+            arduino.BaudRate = 115200;
+            serialHandler.Interval = 200;
+            Mode = 0;
+            Time = TimeSpan.Zero;
         }
 
         void SetDefaults()
         {
-            serialHandler.Interval = 200;
-            arduino.BaudRate = 115200;
-            Time = TimeSpan.Zero;
             max = double.MinValue;
             min = double.MaxValue;
-            Mode = 0;
         }
 
         void arduino_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -104,12 +104,13 @@ namespace Cinghiatore
             double time = watch.ElapsedMilliseconds;
 
             values.Add(new double[] { time, val });
-            NewData(this, new SerialEventArgs(new double[] { time, val }));
 
             if (val > max)
                 max = val;
             if (val < min)
                 min = val;
+
+            NewData(this, new SerialEventArgs(new double[] { time, val }));
 
             if (watch.Elapsed.Ticks >= Time.Ticks)
                 Stop();
@@ -175,6 +176,7 @@ namespace Cinghiatore
             serialHandler.Stop();
             watch.Reset();
             values.Clear();
+            SetDefaults();
         }
 
         public bool Tare()
@@ -186,7 +188,7 @@ namespace Cinghiatore
         }
     }
 
-    enum SessionMode
+    public enum SessionMode
     {
         Libero = 0,
         Massimale = 1,

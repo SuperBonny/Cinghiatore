@@ -63,7 +63,7 @@
             this.groupBox1.Size = new System.Drawing.Size(280, 154);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Massimo raggiunto [Kg]";
+            this.groupBox1.Text = "Picco [Kg]";
             // 
             // maxVal
             // 

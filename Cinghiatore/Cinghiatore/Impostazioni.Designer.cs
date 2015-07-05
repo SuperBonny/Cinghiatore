@@ -451,6 +451,52 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Generali";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.offDecr);
+            this.groupBox2.Controls.Add(this.offIncr);
+            this.groupBox2.Controls.Add(this.OffLbl);
+            this.groupBox2.Location = new System.Drawing.Point(221, 22);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(100, 160);
+            this.groupBox2.TabIndex = 15;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Offset";
+            // 
+            // offDecr
+            // 
+            this.offDecr.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.offDecr.Location = new System.Drawing.Point(3, 117);
+            this.offDecr.Name = "offDecr";
+            this.offDecr.Size = new System.Drawing.Size(94, 40);
+            this.offDecr.TabIndex = 2;
+            this.offDecr.Text = "-";
+            this.offDecr.UseVisualStyleBackColor = true;
+            this.offDecr.Click += new System.EventHandler(this.offDecr_Click);
+            // 
+            // offIncr
+            // 
+            this.offIncr.Dock = System.Windows.Forms.DockStyle.Top;
+            this.offIncr.Location = new System.Drawing.Point(3, 22);
+            this.offIncr.Name = "offIncr";
+            this.offIncr.Size = new System.Drawing.Size(94, 40);
+            this.offIncr.TabIndex = 1;
+            this.offIncr.Text = "+";
+            this.offIncr.UseVisualStyleBackColor = true;
+            this.offIncr.Click += new System.EventHandler(this.offIncr_Click);
+            // 
+            // OffLbl
+            // 
+            this.OffLbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.OffLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OffLbl.Location = new System.Drawing.Point(3, 22);
+            this.OffLbl.Name = "OffLbl";
+            this.OffLbl.Size = new System.Drawing.Size(94, 135);
+            this.OffLbl.TabIndex = 0;
+            this.OffLbl.Text = "0.0";
+            this.OffLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // intervalLabel
             // 
             this.intervalLabel.AutoSize = true;

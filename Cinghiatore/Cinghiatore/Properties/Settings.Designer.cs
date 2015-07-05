@@ -94,5 +94,17 @@ namespace Cinghiatore.Properties {
                 this["Offset"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4000")]
+        public int OffTime {
+            get {
+                return ((int)(this["OffTime"]));
+            }
+            set {
+                this["OffTime"] = value;
+            }
+        }
     }
 }

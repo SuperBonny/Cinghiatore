@@ -193,6 +193,11 @@ namespace Cinghiatore
             if (colorDialog1.ShowDialog() == DialogResult.OK)
                 inRangeColorBox.BackColor = colorDialog1.Color;
         }
+        private void limitBtn_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+                limitColorBox.BackColor = colorDialog1.Color;
+        }
 
         private void minIncr_Click(object sender, EventArgs e)
         {

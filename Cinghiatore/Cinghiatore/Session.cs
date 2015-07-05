@@ -9,25 +9,19 @@ namespace Cinghiatore
 {
     public class Session
     {
+        double max, min;
+        Stopwatch watch;
+        Timer serialHandler;
+        SerialPort arduino = new SerialPort();
+        List<double[]> values = new List<double[]>();
+        public event EventHandler<SerialEventArgs> NewData;
         public string Port { get; set; }
-        public int BaudRate
-        {
-            get
-            {
-                return arduino.BaudRate;
-            }
-            set
-            {
-                arduino.BaudRate = value;
-            }
-        }
-
         public SessionMode Mode { get; set; }
         public TimeSpan Time { get; set; }
-
-        double max, min;
         public double Max { get { return max; } }
         public double Min { get { return min; } }
+        public List<double[]> Values { get { return values; } }
+        public bool IsCountDown { get; set; }
         public double Average
         {
             get
@@ -38,8 +32,17 @@ namespace Cinghiatore
                 return tmp / values.Count;
             }
         }
-        public List<double[]> Values { get { return values; } }
-        public bool IsCountDown { get; set; }
+        public int BaudRate
+        {
+            get
+            {
+                return arduino.BaudRate;
+            }
+            set
+            {
+                arduino.BaudRate = value;
+        }
+        }
         public bool IsStarted
         {
             get
@@ -63,7 +66,6 @@ namespace Cinghiatore
         Timer serialHandler;
 
         public event EventHandler<SerialEventArgs> NewData;
-        public event EventHandler RunningChanged;
 
         SerialPort arduino = new SerialPort();
         List<double[]> values = new List<double[]>();
@@ -124,16 +126,9 @@ namespace Cinghiatore
 
         public bool Read()
         {
-            try
-            {
                 arduino.Write("r");
                 return true;
             }
-            catch (InvalidOperationException e)
-            {
-                return false;
-            }
-        }
 
         public string GetTime()
         {

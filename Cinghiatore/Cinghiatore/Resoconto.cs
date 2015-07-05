@@ -20,7 +20,7 @@ namespace Cinghiatore
 
         bool Save(string path)
         {
-            File.WriteAllText(path, "Tempo;Forza;Media" + Environment.NewLine + ";;" + Math.Round(Session.SessionInstance.Average, 2) + Environment.NewLine);
+            File.WriteAllText(path, "Tempo [s];Forza [Kg];Media [Kg]" + Environment.NewLine + ";;" + Math.Round(Session.SessionInstance.Average, 2) + Environment.NewLine);
             foreach (var item in Session.SessionInstance.Values)
             {
                 File.AppendAllText(path, item[0] + ";" + item[1] + Environment.NewLine);

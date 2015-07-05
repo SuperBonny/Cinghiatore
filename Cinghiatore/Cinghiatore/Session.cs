@@ -9,7 +9,29 @@ namespace Cinghiatore
 {
     public class Session
     {
+        double max, min;
+        Stopwatch watch;
+        Timer serialHandler;
+        SerialPort arduino = new SerialPort();
+        List<double[]> values = new List<double[]>();
+        public event EventHandler<SerialEventArgs> NewData;
         public string Port { get; set; }
+        public SessionMode Mode { get; set; }
+        public TimeSpan Time { get; set; }
+        public double Max { get { return max; } }
+        public double Min { get { return min; } }
+        public List<double[]> Values { get { return values; } }
+        public bool IsCountDown { get; set; }
+        public double Average
+        {
+            get
+            {
+                double tmp = 0;
+                foreach (double[] v in values)
+                    tmp += v[1];
+                return tmp / values.Count;
+            }
+        }
         public int BaudRate
         {
             get
@@ -21,25 +43,6 @@ namespace Cinghiatore
                 arduino.BaudRate = value;
             }
         }
-
-        public SessionMode Mode { get; set; }
-        public TimeSpan Time { get; set; }
-
-        double max, min;
-        public double Max { get { return max; } }
-        public double Min { get { return min; } }
-        public double Average
-        {
-            get
-            {
-                double tmp = 0;
-                foreach (double[] v in values)
-                    tmp += v[1];
-                return tmp / values.Count;
-            }
-        }
-        public List<double[]> Values { get { return values; } }
-        public bool IsCountDown { get; set; }
         public bool IsStarted
         {
             get
@@ -58,14 +61,6 @@ namespace Cinghiatore
                 serialHandler.Interval = Convert.ToInt32(value);
             }
         }
-
-        Stopwatch watch;
-        Timer serialHandler;
-
-        public event EventHandler<SerialEventArgs> NewData;
-
-        SerialPort arduino = new SerialPort();
-        List<double[]> values = new List<double[]>();
 
         //Singleton Pattern
         static Session instance;
@@ -123,15 +118,8 @@ namespace Cinghiatore
 
         public bool Read()
         {
-            try
-            {
-                arduino.Write("r");
-                return true;
-            }
-            catch (InvalidOperationException e)
-            {
-                return false;
-            }
+            arduino.Write("r");
+            return true;
         }
 
         public string GetTime()

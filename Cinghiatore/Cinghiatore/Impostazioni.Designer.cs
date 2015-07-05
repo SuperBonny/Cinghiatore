@@ -347,7 +347,7 @@
             this.groupBox2.Controls.Add(this.offIncr);
             this.groupBox2.Controls.Add(this.OffLbl);
             this.groupBox2.Location = new System.Drawing.Point(221, 22);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(100, 160);
             this.groupBox2.TabIndex = 15;
@@ -442,6 +442,7 @@
             this.limitBtn.TabIndex = 10;
             this.limitBtn.Text = "Linee Limite";
             this.limitBtn.UseVisualStyleBackColor = true;
+            this.limitBtn.Click += new System.EventHandler(this.limitBtn_Click);
             // 
             // button1
             // 

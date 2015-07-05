@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Windows.Forms;
 using System.IO.Ports;
-using System.IO;
 using System.Drawing;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -12,6 +10,8 @@ namespace Cinghiatore
 {
     public partial class Form1 : Form
     {
+        public int MaxOffTime { get; set; }
+        Thread off;
         public  SerialPort arduino = new SerialPort();
 
         Color chartColor, inRangeColor, outRangeColor, limitColor;
@@ -21,7 +21,12 @@ namespace Cinghiatore
         {
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
-            Session.SessionInstance.NewData += Session_NewData;
+        }
+
+        void OffChecker()
+        {
+            Thread.Sleep(MaxOffTime);
+            EndSession("Off range for more than " + MaxOffTime + " Seconds");
         }
 
         void Session_NewData(object sender, SerialEventArgs e)
@@ -29,9 +34,16 @@ namespace Cinghiatore
             if (Session.SessionInstance.Mode == SessionMode.Resistenza)
             {
                 if (e.Value[1] > -offset && e.Value[1] < offset)
+                {
+                    if (off.IsAlive)
+                        off.Abort();
                     chart1.Series[0].Color = inRangeColor;
+                }
                 else
+                {
+                    off.Start();
                     chart1.Series[0].Color = outRangeColor;
+                }
             }
             else if (Session.SessionInstance.Mode == SessionMode.Massimale)
                 chart1.Series[0].Color = chartColor;
@@ -74,7 +86,14 @@ namespace Cinghiatore
                     str2.BackColor = Color.Black;
                     chart1.ChartAreas[0].AxisY.StripLines.Add(str2);
                 }
-                Session.SessionInstance.Read();
+                try
+                {
+                    Session.SessionInstance.Read();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    ShowError(ex);
+                }
                 Session.SessionInstance.Start();
                 startBtn.Text = "Stop";
                 button1.Enabled = true;
@@ -83,10 +102,12 @@ namespace Cinghiatore
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Session.SessionInstance.NewData += Session_NewData;
             Impostazioni set = new Impostazioni();
             set.ShowInTaskbar = false;
             set.ShowDialog(this);
 
+            off = new Thread(OffChecker);
             chartColor = Properties.Settings.Default.ChartColor;
             inRangeColor=Properties.Settings.Default.InColor;
             outRangeColor=Properties.Settings.Default.OutColor;
@@ -106,7 +127,7 @@ namespace Cinghiatore
             set.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        void EndSession(string message = default(string))
         {
             Session.SessionInstance.Stop();
             Resoconto res = new Resoconto();
@@ -121,7 +142,14 @@ namespace Cinghiatore
             {
                 Session.SessionInstance.Tare();
                 chart1.Series[0].Points.Clear();
-                Session.SessionInstance.Read();
+                try
+                {
+                    Session.SessionInstance.Read();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    ShowError(ex);
+                }
             }
             catch (Exception ex)
             {

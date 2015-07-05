@@ -504,6 +504,7 @@
             this.limitBtn.TabIndex = 10;
             this.limitBtn.Text = "Linee Limite";
             this.limitBtn.UseVisualStyleBackColor = true;
+            this.limitBtn.Click += new System.EventHandler(this.limitBtn_Click);
             // 
             // button1
             // 

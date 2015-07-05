@@ -229,12 +229,14 @@ namespace Cinghiatore
 
         private void offIncr_Click(object sender, EventArgs e)
         {
-
+            if (off < 10)
+                Offset += 0.5;
         }
 
         private void offDecr_Click(object sender, EventArgs e)
         {
-
+            if (off > 0)
+                Offset -= 0.5;
         }
     }
 }

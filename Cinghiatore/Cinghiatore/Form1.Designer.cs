@@ -205,9 +205,10 @@
             this.chart1.Name = "chart1";
             series1.BorderWidth = 3;
             series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
             series1.Color = System.Drawing.SystemColors.Highlight;
             series1.Name = "Forza [Kg]";
+            series1.YValuesPerPoint = 4;
             this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(1284, 619);
             this.chart1.TabIndex = 8;

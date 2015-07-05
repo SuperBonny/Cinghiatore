@@ -25,10 +25,10 @@ namespace Cinghiatore
         {
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
-            Session.SessionInstance.onNewData += Session_onNewData;
+            Session.SessionInstance.NewData += Session_NewData;
         }
 
-        void Session_onNewData(object sender, SerialEventArgs e)
+        void Session_NewData(object sender, SerialEventArgs e)
         {
             if (Session.SessionInstance.Mode == 1)
             {
@@ -54,15 +54,12 @@ namespace Cinghiatore
 
             Task.Factory.StartNew(() => chart1.Series[0].Points.AddXY(e.Value[0] / 1000, e.Value[1]));
 
-            time.Text = Session.SessionInstance.tempo();
+            time.Text = Session.SessionInstance.GetTime();
 
             curVal.Text = Convert.ToString(e.Value[1]);
 
             maxVal.Text = Session.SessionInstance.Max.ToString();
-             
         }
-
-        
 
         private void startBtn_Click(object sender, EventArgs e)
         {
@@ -74,6 +71,7 @@ namespace Cinghiatore
             }
             else
             {
+                Session.SessionInstance.Read();
                 Session.SessionInstance.Start();
                 startBtn.Text = "Stop";
                 button1.Enabled = true;
@@ -100,9 +98,10 @@ namespace Cinghiatore
         private void button1_Click(object sender, EventArgs e)
         {
             Session.SessionInstance.Stop();
-
-            //Form Form3 = new Resoconto(Session.SessionInstance.minVal(), Session.SessionInstance.maxVal(), Session.SessionInstance.average(), Session.SessionInstance.tempo(), Session.SessionInstance.values);
-            //Form3.Show();
+            Resoconto res = new Resoconto();
+            res.ShowInTaskbar = false;
+            res.Owner = this;
+            res.Show();
         }
 
         private void tareBtn_Click(object sender, EventArgs e)

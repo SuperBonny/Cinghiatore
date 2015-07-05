@@ -28,6 +28,17 @@ namespace Cinghiatore
         double max, min;
         public double Max { get { return max; } }
         public double Min { get { return min; } }
+        public double Average
+        {
+            get
+            {
+                double tmp = 0;
+                foreach (double[] v in values)
+                    tmp += v[1];
+                return tmp / values.Count;
+            }
+        }
+        public List<double[]> Values { get { return values; } }
         public bool IsCountDown { get; set; }
         public bool IsStarted
         {
@@ -51,10 +62,10 @@ namespace Cinghiatore
         Stopwatch watch;
         Timer serialHandler;
 
-        public event EventHandler<SerialEventArgs> onNewData;
+        public event EventHandler<SerialEventArgs> NewData;
 
         SerialPort arduino = new SerialPort();
-        public List<double[]> values = new List<double[]>();
+        List<double[]> values = new List<double[]>();
 
         //Singleton Pattern
         static Session instance;
@@ -93,7 +104,7 @@ namespace Cinghiatore
             double time = watch.ElapsedMilliseconds;
 
             values.Add(new double[] { time, val });
-            onNewData(this, new SerialEventArgs(new double[] { time, val }));
+            NewData(this, new SerialEventArgs(new double[] { time, val }));
 
             if (val > max)
                 max = val;
@@ -109,18 +120,19 @@ namespace Cinghiatore
             Read();
         }
 
-        void Read()
+        public void Read()
         {
             arduino.Write("r");
         }
 
-        public string tempo()
+        public string GetTime()
         {
             if (IsCountDown)
                 return String.Format("{0:00}:{1:00}", Time.Minutes - watch.Elapsed.Minutes, Time.Seconds - watch.Elapsed.Seconds);
             else
                 return String.Format("{0:00}:{1:00}", watch.Elapsed.Minutes, watch.Elapsed.Seconds);
         }
+
         public bool Connect()
         {
             try
@@ -165,31 +177,12 @@ namespace Cinghiatore
             values.Clear();
         }
 
-        public bool Save(string path)
-        {
-            File.AppendAllText(path, String.Format("Tempo [ms];Forza [Kg];Media[Kg]\n;;{0:0.00}", Math.Round(average(), 2)));
-
-            foreach (double[] val in values)
-                File.AppendAllText(path, Math.Round(val[0] / 1000, 2) + ";" + val[1] + Environment.NewLine);
-            return true;
-        }
-
         public bool Tare()
         {
             arduino.Write("t");
             Reset();
             Start();
             return true;
-        }
-
-        public double average()
-        {
-            double tmp = 0.0;
-
-            foreach (double[] val in values)
-                tmp += val[1];
-
-            return Math.Round(tmp / values.Count, 2);
         }
     }
 

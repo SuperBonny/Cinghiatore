@@ -13,34 +13,18 @@ namespace Cinghiatore
 {
     public partial class Resoconto : Form
     {
-        List<Tuple<double, double>> values = new List<Tuple<double, double>>();
-        double avg, max, min;
-        string time;
-
-        public Resoconto(double minV ,double maxV, double avgV, string timeV, List<Tuple<double,double>> value)
+        public Resoconto()
         {
             InitializeComponent();
-            max = maxV;
-            min = minV;
-            avg = avgV;
-            time = timeV;
-            maxVal.Text = max.ToString();
-            avgVal.Text = avgV.ToString();
+        }
 
-            if (Session.SessionInstance.IsCountDown)
-                timer.Text = String.Format("{0:00}:{1:00}", Session.SessionInstance.Time.Minutes, Session.SessionInstance.Time.Seconds);
-            else
-                timer.Text = time;
+        bool Save(string path)
+        {
+            File.AppendAllText(path, String.Format("Tempo [ms];Forza [Kg];Media[Kg]\n;;{0:0.00}", Math.Round(Session.SessionInstance.Average, 2)));
 
-            values = value;
-
-            //chart1.ChartAreas[0].AxisY.Maximum = max + 3; //da mettere if
-            //chart1.ChartAreas[0].AxisY.Minimum = min - 3;
-
-            foreach (var item in values)
-            {
-                chart1.Series[0].Points.AddXY(item.Item1 / 1000, item.Item2);
-            }
+            foreach (double[] val in Session.SessionInstance.Values)
+                File.AppendAllText(path, Math.Round(val[0] / 1000, 2) + ";" + val[1] + Environment.NewLine);
+            return true;
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -51,8 +35,8 @@ namespace Cinghiatore
                 {
                     if (File.Exists(saveFile.FileName))
                         File.Delete(saveFile.FileName);
-                    
-                    Session.SessionInstance.Save(saveFile.FileName);
+
+                    Save(saveFile.FileName);
                 }
             }
             catch (Exception ex)
@@ -66,14 +50,24 @@ namespace Cinghiatore
             this.Close();
         }
 
-        private void resetBtn_Click(object sender, EventArgs e)
-        {
-            Session.SessionInstance.Reset();
-            this.Close();
-        }
-
         private void Resoconto_Load(object sender, EventArgs e)
         {
+            Owner.Enabled = false;
+            maxVal.Text = Session.SessionInstance.Max.ToString();
+            avgVal.Text = Session.SessionInstance.Average.ToString();
+
+            timer.Text = Session.SessionInstance.GetTime();
+
+            //chart1.ChartAreas[0].AxisY.Maximum = max + 3; //da mettere if
+            //chart1.ChartAreas[0].AxisY.Minimum = min - 3;
+
+            foreach (var item in Session.SessionInstance.Values)
+            {
+                chart1.Series[0].Points.AddXY(item[0] / 1000, item[1]);
+            }
+
+            //chart1.Titles[0].Text = Convert.ToString(SessionMode)Session.SessionInstance.Mode)));
+
             switch (Session.SessionInstance.Mode)
             {
                 case 0:
@@ -86,6 +80,11 @@ namespace Cinghiatore
                     chart1.Titles[0].Text = "Resistenza";
                     break;
             }
+        }
+
+        private void Resoconto_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Owner.Enabled = true;
         }
     }
 }

@@ -51,8 +51,7 @@ namespace Cinghiatore
         {
             InitializeComponent();
         }
-        
-        public static int tabIndex = 0;
+
         private void Impostazioni_Load(object sender, EventArgs e)
         {
             this.Owner.Enabled = false;
@@ -69,6 +68,7 @@ namespace Cinghiatore
                 Seconds = 0;
             }
 
+            intervalSel.Value = (int)Session.SessionInstance.Interval;
             exerciseBox.SelectedIndex = Session.SessionInstance.Mode;
 
             intervalSel.Value = (int)Session.SessionInstance.Interval;
@@ -194,7 +194,7 @@ namespace Cinghiatore
 
         private void intervalSel_ValueChanged(object sender, EventArgs e)
         {
-            intervalLbl.Text = "Intervallo di acquisizione: " + intervalSel.Value + "ms";
+            intervalLabel.Text = intervalSel.Value + "ms";
         }
 
         private void Impostazioni_FormClosed(object sender, FormClosedEventArgs e)

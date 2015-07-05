@@ -121,9 +121,17 @@ namespace Cinghiatore
             Read();
         }
 
-        public void Read()
+        public bool Read()
         {
-            arduino.Write("r");
+            try
+            {
+                arduino.Write("r");
+                return true;
+            }
+            catch (InvalidOperationException e)
+            {
+                return false;
+            }
         }
 
         public string GetTime()

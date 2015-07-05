@@ -90,7 +90,7 @@ namespace Cinghiatore
             chartColorBox.BackColor = Properties.Settings.Default.ChartColor;
             outRangeColorBox.BackColor = Properties.Settings.Default.OutColor;
             inRangeColorBox.BackColor = Properties.Settings.Default.InColor;
-            OffLbl.Text = Properties.Settings.Default.Offset.ToString();
+            Offset = Properties.Settings.Default.Offset;
             outRangeColorBox.BackColor = Properties.Settings.Default.OutColor;
             inRangeColorBox.BackColor = Properties.Settings.Default.InColor;
 

@@ -22,6 +22,15 @@ namespace Cinghiatore
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
             Session.SessionInstance.NewData += Session_NewData;
+            Session.SessionInstance.RunningChanged += SessionInstance_RunningChanged;
+        }
+
+        void SessionInstance_RunningChanged(object sender, EventArgs e)
+        {
+            if (Session.SessionInstance.IsStarted)
+                startBtn.Text = "Stop";
+            else
+                startBtn.Text = "Start";
         }
 
         void Session_NewData(object sender, SerialEventArgs e)
@@ -55,7 +64,6 @@ namespace Cinghiatore
             if (Session.SessionInstance.IsStarted)
             {
                 Session.SessionInstance.Stop();
-                startBtn.Text = "Start";
             }
             else
             {

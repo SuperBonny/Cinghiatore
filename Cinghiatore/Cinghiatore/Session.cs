@@ -63,6 +63,7 @@ namespace Cinghiatore
         Timer serialHandler;
 
         public event EventHandler<SerialEventArgs> NewData;
+        public event EventHandler RunningChanged;
 
         SerialPort arduino = new SerialPort();
         List<double[]> values = new List<double[]>();
@@ -170,18 +171,19 @@ namespace Cinghiatore
         {
             serialHandler.Start();
             watch.Start();
+            RunningChanged(this, null);
         }
 
         public void Stop()
         {
             watch.Stop();
             serialHandler.Stop();
+            RunningChanged(this, null);
         }
 
         public void Reset()
         {
-            watch.Stop();
-            serialHandler.Stop();
+            Stop();
             watch.Reset();
             values.Clear();
             SetDefaults();

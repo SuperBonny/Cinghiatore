@@ -14,6 +14,7 @@ namespace Cinghiatore
     public partial class Impostazioni : Form
     {
         int min, sec;
+        double off;
         int Minutes { get { return min; } 
             set { 
                 min = value; 
@@ -46,6 +47,23 @@ namespace Cinghiatore
                 else
                     secIncr.Enabled = true;
             } }
+
+        double Offset { get { return off; }
+            set
+            {
+                off = value;
+                offLbl.Text = off.ToString();
+                if (off == 0)
+                    offDecr.Enabled = false;
+                else
+                    offDecr.Enabled = true;
+
+                if (off == 10)
+                    offIncr.Enabled = false;
+                else
+                    offIncr.Enabled = true;
+            }
+        }
 
         public Impostazioni()
         {
@@ -200,6 +218,16 @@ namespace Cinghiatore
         private void Impostazioni_FormClosed(object sender, FormClosedEventArgs e)
         {
             Owner.Enabled = true;
+        }
+
+        private void offIncr_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void offDecr_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

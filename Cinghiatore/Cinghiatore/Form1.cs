@@ -20,6 +20,7 @@ namespace Cinghiatore
         public static Color chartColor = Color.FromArgb(30, 144, 255);
         public static Color inRangeColor = Color.FromArgb(40, 143, 43);
         public static Color outRangeColor = Color.FromArgb(200, 20, 20);
+        public static double offset = 1.5;
 
         public Form1()
         {
@@ -32,7 +33,7 @@ namespace Cinghiatore
         {
             if (Session.SessionInstance.Mode == SessionMode.Resistenza)
             {
-                if (e.Value[1] > -1.5 && e.Value[1] < 1.5)
+                if (e.Value[1] > -offset && e.Value[1] < offset)
                     chart1.Series[0].Color = inRangeColor;
                 else
                     chart1.Series[0].Color = outRangeColor;
@@ -67,13 +68,13 @@ namespace Cinghiatore
                 {
                     StripLine str1 = new StripLine();
                     str1.Interval = 0;
-                    str1.IntervalOffset = 1.5;
+                    str1.IntervalOffset = offset;
                     str1.StripWidth = 0.1;
                     str1.BackColor = Color.Black;
                     chart1.ChartAreas[0].AxisY.StripLines.Add(str1);
                     StripLine str2 = new StripLine();
                     str2.Interval = 0;
-                    str2.IntervalOffset = -1.5;
+                    str2.IntervalOffset = -offset;
                     str2.StripWidth = 0.1;
                     str2.BackColor = Color.Black;
                     chart1.ChartAreas[0].AxisY.StripLines.Add(str2);

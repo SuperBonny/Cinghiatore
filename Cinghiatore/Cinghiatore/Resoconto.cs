@@ -57,11 +57,11 @@ namespace Cinghiatore
             maxVal.Text = Session.SessionInstance.Max.ToString();
             avgVal.Text = Math.Round(Session.SessionInstance.Average, 2).ToString();
 
-            timer.Text = Session.SessionInstance.GetTime();
+            if (Session.SessionInstance.IsCountDown)
+                timer.Text = String.Format("{0:00}:{1:00}", Session.SessionInstance.Time.Minutes, Session.SessionInstance.Time.Seconds);
+            else
+                timer.Text = Session.SessionInstance.GetTime();
 
-            //chart1.ChartAreas[0].AxisY.Maximum = max + 3; //da mettere if
-            //chart1.ChartAreas[0].AxisY.Minimum = min - 3;
-            //chart1.Titles[0].Text = Convert.ToString(SessionMode)Session.SessionInstance.Mode)));
 
             switch ((int)Session.SessionInstance.Mode)
             {

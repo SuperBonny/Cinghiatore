@@ -23,7 +23,7 @@ namespace Cinghiatore
                     minDecr.Enabled = false;
                 else
                     minDecr.Enabled = true;
-                if (min == 99)
+                if (min == 59)
                 {
                     minIncr.Enabled = false;
                     if (sec == 59)
@@ -42,7 +42,7 @@ namespace Cinghiatore
                     secDecr.Enabled = false;
                 else
                     secDecr.Enabled = true;
-                if (min == 99 && sec == 59)
+                if (min == 59 && sec == 59)
                     secIncr.Enabled = false;
                 else
                     secIncr.Enabled = true;
@@ -86,14 +86,15 @@ namespace Cinghiatore
                 Seconds = 0;
             }
 
-            intervalSel.Value = (int)Session.SessionInstance.Interval;
+            intervalSel.Value = (int)Properties.Settings.Default.Interval;
+            chartColorBox.BackColor = Properties.Settings.Default.ChartColor;
+            outRangeColorBox.BackColor = Properties.Settings.Default.OutColor;
+            inRangeColorBox.BackColor = Properties.Settings.Default.InColor;
+            OffLbl.Text = Properties.Settings.Default.Offset.ToString();
+            outRangeColorBox.BackColor = Properties.Settings.Default.OutColor;
+            inRangeColorBox.BackColor = Properties.Settings.Default.InColor;
+
             exerciseBox.SelectedIndex = (int)Session.SessionInstance.Mode;
-
-            intervalSel.Value = (int)Session.SessionInstance.Interval;
-            chartColorBox.BackColor = Form1.chartColor;
-            outRangeColorBox.BackColor = Form1.outRangeColor;
-            inRangeColorBox.BackColor = Form1.inRangeColor;
-
             serialCombo.SelectedItem = Session.SessionInstance.Port;
             baudCombo.SelectedItem = Session.SessionInstance.BaudRate.ToString();
         }
@@ -110,8 +111,6 @@ namespace Cinghiatore
         {
             try
             {
-                Session.SessionInstance.Connect(serialCombo.Text, Convert.ToInt32(baudCombo.Text));
-
                 Session.SessionInstance.Mode = (SessionMode)exerciseBox.SelectedIndex;
 
                 if (Minutes > 0 || Seconds > 0)
@@ -124,7 +123,15 @@ namespace Cinghiatore
                     Session.SessionInstance.IsCountDown = false;
                     Session.SessionInstance.Time = new TimeSpan(0, int.MaxValue, int.MaxValue);
                 }
-                Session.SessionInstance.Interval = intervalSel.Value;
+
+                Properties.Settings.Default.Offset = OffLbl.Text;
+                Properties.Settings.Default.Interval = intervalSel.Value;
+                Properties.Settings.Default.ChartColor = chartColorBox.BackColor;
+                Properties.Settings.Default.OutColor = outRangeColorBox.BackColor;
+                Properties.Settings.Default.InColor = inRangeColorBox.BackColor;
+                Properties.Settings.Default.LimitColor = limitColorBox.BackColor;
+
+                Session.SessionInstance.Reset();
                 this.Close();
             }
             catch (Exception ex)
@@ -182,7 +189,7 @@ namespace Cinghiatore
 
         private void minIncr_Click(object sender, EventArgs e)
         {
-            if (min < 99)
+            if (min < 59)
                 Minutes++;
         }
 
@@ -197,7 +204,7 @@ namespace Cinghiatore
             if (sec < 59)
                 Seconds++;
             else
-                if (min < 99)
+                if (min < 59)
                 {
                     Minutes++;
                     Seconds = 0;

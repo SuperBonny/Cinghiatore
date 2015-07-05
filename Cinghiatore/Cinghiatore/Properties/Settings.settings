@@ -17,7 +17,7 @@
     <Setting Name="Interval" Type="System.Double" Scope="User">
       <Value Profile="(Default)">200</Value>
     </Setting>
-    <Setting Name="Offset" Type="System.Int32" Scope="User">
+    <Setting Name="Offset" Type="System.Double" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
   </Settings>

@@ -114,6 +114,7 @@ namespace Cinghiatore
             inRangeColorBox.BackColor = Properties.Settings.Default.InColor;
             limitColorBox.BackColor = Properties.Settings.Default.LimitColor;
 
+
             exerciseBox.SelectedIndex = (int)Session.SessionInstance.Mode;
             baudCombo.SelectedItem = Session.SessionInstance.BaudRate.ToString();
 
@@ -302,12 +303,6 @@ namespace Cinghiatore
         {
             if (offSec > 0)
                 offSecond--;
-        }
-
-        private void limitBtn_Click(object sender, EventArgs e)
-        {
-            if (colorDialog1.ShowDialog() == DialogResult.OK)
-                limitColorBox.BackColor = colorDialog1.Color;
         }
     }
 }

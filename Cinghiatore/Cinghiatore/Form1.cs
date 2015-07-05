@@ -12,15 +12,10 @@ namespace Cinghiatore
 {
     public partial class Form1 : Form
     {
-        Stopwatch watch = new Stopwatch();
-
         public  SerialPort arduino = new SerialPort();
-        List<Tuple<double, double>> values = new List<Tuple<double, double>>();
 
-        public static Color chartColor = Color.FromArgb(30, 144, 255);
-        public static Color inRangeColor = Color.FromArgb(40, 143, 43);
-        public static Color outRangeColor = Color.FromArgb(200, 20, 20);
-        public static double offset = 1.5;
+        Color chartColor, inRangeColor, outRangeColor, limitColor;
+        double offset;
 
         public Form1()
         {
@@ -91,6 +86,15 @@ namespace Cinghiatore
             Impostazioni set = new Impostazioni();
             set.ShowInTaskbar = false;
             set.ShowDialog(this);
+
+            chartColor = Properties.Settings.Default.ChartColor;
+            inRangeColor=Properties.Settings.Default.InColor;
+            outRangeColor=Properties.Settings.Default.OutColor;
+            limitColor = Properties.Settings.Default.LimitColor;
+            offset=Properties.Settings.Default.Offset;
+            Session.SessionInstance.Interval = Properties.Settings.Default.Interval;
+
+            Session.SessionInstance.Connect();
         }
 
         private void settingsBtn_Click(object sender, EventArgs e)
@@ -121,7 +125,7 @@ namespace Cinghiatore
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowError(ex);
             }
         }
 
@@ -135,8 +139,13 @@ namespace Cinghiatore
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowError(ex);
             }
+        }
+
+        void ShowError(Exception e)
+        {
+            MessageBox.Show(e.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

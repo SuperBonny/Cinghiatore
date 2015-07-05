@@ -131,6 +131,9 @@ namespace Cinghiatore
                 Properties.Settings.Default.InColor = inRangeColorBox.BackColor;
                 Properties.Settings.Default.LimitColor = limitColorBox.BackColor;
 
+                Session.SessionInstance.Port = serialCombo.Text;
+                Session.SessionInstance.BaudRate = Convert.ToInt32(baudCombo.Text);
+
                 Session.SessionInstance.Reset();
                 this.Close();
             }
@@ -153,38 +156,19 @@ namespace Cinghiatore
         private void button1_Click(object sender, EventArgs e)
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
-                Form1.chartColor = colorDialog1.Color;
-            chartColorBox.BackColor = Form1.chartColor;
+                chartColorBox.BackColor = colorDialog1.Color;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (colorDialog1.ShowDialog() == DialogResult.OK)
-                    Form1.outRangeColor = colorDialog1.Color;
-                
-                outRangeColorBox.BackColor = Form1.outRangeColor;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+                outRangeColorBox.BackColor = colorDialog1.Color;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (colorDialog1.ShowDialog() == DialogResult.OK)
-                    Form1.inRangeColor = colorDialog1.Color;
-
-                inRangeColorBox.BackColor = Form1.inRangeColor;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+                inRangeColorBox.BackColor = colorDialog1.Color;
         }
 
         private void minIncr_Click(object sender, EventArgs e)

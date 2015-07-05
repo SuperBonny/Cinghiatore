@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
+using System.Management;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO.Ports;
 
 namespace Cinghiatore
 {
@@ -73,7 +74,6 @@ namespace Cinghiatore
         private void Impostazioni_Load(object sender, EventArgs e)
         {
             this.Owner.Enabled = false;
-            ReloadSerial();
 
             if (Session.SessionInstance.IsCountDown)
             {
@@ -95,16 +95,19 @@ namespace Cinghiatore
             inRangeColorBox.BackColor = Properties.Settings.Default.InColor;
 
             exerciseBox.SelectedIndex = (int)Session.SessionInstance.Mode;
-            serialCombo.SelectedItem = Session.SessionInstance.Port;
             baudCombo.SelectedItem = Session.SessionInstance.BaudRate.ToString();
+
+            ReloadSerial();
+            if(Session.SessionInstance.Port!=null)
+                serialCombo.SelectedItem = Session.SessionInstance.Port;
         }
 
         void ReloadSerial()
         {
             serialCombo.Items.Clear();
-            foreach (var item in SerialPort.GetPortNames())
+            foreach (string item in AutodetectArduinoPort())
                 serialCombo.Items.Add(item);
-            serialCombo.SelectedIndex = 0;
+            serialCombo.SelectedIndex = serialCombo.Items.Count - 1;
         }
 
         private void okBtn_Click(object sender, EventArgs e)
@@ -221,6 +224,33 @@ namespace Cinghiatore
         {
             if (off > 0)
                 Offset -= 0.5;
+        }
+
+        string[] AutodetectArduinoPort()
+        {
+            ManagementScope connectionScope = new ManagementScope();
+            SelectQuery serialQuery = new SelectQuery("SELECT * FROM Win32_SerialPort");
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(connectionScope, serialQuery);
+
+            try
+            {
+                List<string> coms = new List<string>();
+                foreach (ManagementObject item in searcher.Get())
+                {
+                    string desc = item["Description"].ToString();
+                    string deviceId = item["DeviceID"].ToString();
+
+                    if (desc.Contains("Arduino"))
+                        coms.Add(deviceId);
+                }
+                return coms.ToArray();
+            }
+            catch (ManagementException e)
+            {
+                MessageBox.Show(e.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return null;
         }
     }
 }

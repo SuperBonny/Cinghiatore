@@ -67,7 +67,6 @@
             this.chartColorBox = new System.Windows.Forms.PictureBox();
             this.intervalSel = new System.Windows.Forms.TrackBar();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -347,7 +346,8 @@
             this.groupBox2.Controls.Add(this.offDecr);
             this.groupBox2.Controls.Add(this.offIncr);
             this.groupBox2.Controls.Add(this.OffLbl);
-            this.groupBox2.Location = new System.Drawing.Point(405, 52);
+            this.groupBox2.Location = new System.Drawing.Point(270, 34);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(100, 160);
             this.groupBox2.TabIndex = 15;
@@ -607,6 +607,5 @@
         private System.Windows.Forms.Button offDecr;
         private System.Windows.Forms.Button offIncr;
         private System.Windows.Forms.Label OffLbl;
-        private System.Windows.Forms.HelpProvider helpProvider1;
     }
 }

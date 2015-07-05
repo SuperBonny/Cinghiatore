@@ -73,7 +73,7 @@ namespace Cinghiatore
             {
                 off = value;
                 OffLbl.Text = off.ToString();
-                if (off == 0)
+                if (off == 1)
                     offDecr.Enabled = false;
                 else
                     offDecr.Enabled = true;
@@ -288,7 +288,7 @@ namespace Cinghiatore
 
         private void offDecr_Click_1(object sender, EventArgs e)
         {
-            if (off > 0)
+            if (off > 1)
                 Offset -= 0.5;
         }
 

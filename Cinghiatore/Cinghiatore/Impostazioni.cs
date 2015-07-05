@@ -52,7 +52,7 @@ namespace Cinghiatore
             set
             {
                 off = value;
-                offLbl.Text = off.ToString();
+                OffLbl.Text = off.ToString();
                 if (off == 0)
                     offDecr.Enabled = false;
                 else

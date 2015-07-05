@@ -15,6 +15,7 @@ namespace Cinghiatore
         SerialPort arduino = new SerialPort();
         List<double[]> values = new List<double[]>();
         public event EventHandler<SerialEventArgs> NewData;
+        public event EventHandler RunningChanged;
         public string Port { get; set; }
         public SessionMode Mode { get; set; }
         public TimeSpan Time { get; set; }
@@ -61,14 +62,6 @@ namespace Cinghiatore
                 serialHandler.Interval = Convert.ToInt32(value);
             }
         }
-
-        Stopwatch watch;
-        Timer serialHandler;
-
-        public event EventHandler<SerialEventArgs> NewData;
-
-        SerialPort arduino = new SerialPort();
-        List<double[]> values = new List<double[]>();
 
         //Singleton Pattern
         static Session instance;

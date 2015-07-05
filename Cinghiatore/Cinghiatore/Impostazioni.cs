@@ -56,7 +56,7 @@ namespace Cinghiatore
                 offSec = value;
                 offSecLbl.Text = offSec.ToString();
 
-                if(offSec == 0)
+                if(offSec == 1)
                     offSecDecr.Enabled = false;
                 else
                     offSecDecr.Enabled = true;
@@ -73,6 +73,7 @@ namespace Cinghiatore
             {
                 off = value;
                 OffLbl.Text = off.ToString();
+
                 if (off == 1)
                     offDecr.Enabled = false;
                 else
@@ -302,7 +303,7 @@ namespace Cinghiatore
 
         private void offSecDecr_Click(object sender, EventArgs e)
         {
-            if (offSec > 0)
+            if (offSec > 1)
                 offSecond--;
         }
     }

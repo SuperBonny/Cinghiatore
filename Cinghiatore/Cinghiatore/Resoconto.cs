@@ -85,6 +85,9 @@ namespace Cinghiatore
                 }
                 chart1.Series[0].Points.AddXY(Session.SessionInstance.Values[i][0] / 1000, Session.SessionInstance.Values[i][1]);
                 chart1.Series[1].Points.AddXY(Session.SessionInstance.Values[i][0] / 1000, avg / i);
+
+                chart1.ChartAreas[0].AxisY.Maximum = Session.SessionInstance.Max;
+                chart1.ChartAreas[0].AxisY.Minimum = Session.SessionInstance.Min;
             }
         }
 

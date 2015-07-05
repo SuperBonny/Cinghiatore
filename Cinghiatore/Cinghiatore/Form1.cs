@@ -54,8 +54,8 @@ namespace Cinghiatore
                     {
                         if (Session.SessionInstance.IsStarted)
                         {
-                            startBtn.PerformClick();
-                            //EndSession(); //non funzionaaanabnusdhfuhwaesjg allah akbarr!!!!!
+                            Session.SessionInstance.Stop();
+                            EndSession("Ciao"); //non funzionaaanabnusdhfuhwaesjg allah akbarr!!!!!
                         }
                     }
                 }
@@ -141,13 +141,12 @@ namespace Cinghiatore
             set.Show();
         }
 
-        void EndSession(string message = default(string))
+        void EndSession(string message=default(string))
         {
             Session.SessionInstance.Stop();
             Resoconto res = new Resoconto();
             res.ShowInTaskbar = false;
-            res.Owner = this;
-            res.Show();
+            res.ShowDialog(this);
         }
 
         private void tareBtn_Click(object sender, EventArgs e)

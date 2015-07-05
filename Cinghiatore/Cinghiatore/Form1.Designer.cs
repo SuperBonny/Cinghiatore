@@ -195,9 +195,9 @@
             // 
             // chart1
             // 
-            this.chart1.BackColor = System.Drawing.SystemColors.Control;
+            this.chart1.BackColor = System.Drawing.Color.Transparent;
             chartArea1.AxisX.Minimum = 0D;
-            chartArea1.BackColor = System.Drawing.SystemColors.Control;
+            chartArea1.BackColor = System.Drawing.Color.Transparent;
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -206,10 +206,11 @@
             series1.BorderWidth = 3;
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Name = "Series1";
+            series1.Color = System.Drawing.SystemColors.Highlight;
+            series1.Name = "Forza [Kg]";
             this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(1284, 619);
-            this.chart1.TabIndex = 7;
+            this.chart1.TabIndex = 8;
             this.chart1.Text = "chart1";
             // 
             // Form1

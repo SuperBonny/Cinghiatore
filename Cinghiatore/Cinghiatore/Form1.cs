@@ -77,13 +77,13 @@ namespace Cinghiatore
                     str1.Interval = 0;
                     str1.IntervalOffset = offset;
                     str1.StripWidth = 0.1;
-                    str1.BackColor = Color.Black;
+                    str1.BackColor = limitColor;
                     chart1.ChartAreas[0].AxisY.StripLines.Add(str1);
                     StripLine str2 = new StripLine();
                     str2.Interval = 0;
                     str2.IntervalOffset = -offset;
                     str2.StripWidth = 0.1;
-                    str2.BackColor = Color.Black;
+                    str2.BackColor = limitColor;
                     chart1.ChartAreas[0].AxisY.StripLines.Add(str2);
                 }
                 try

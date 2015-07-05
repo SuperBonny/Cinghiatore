@@ -14,7 +14,7 @@ namespace Cinghiatore
 {
     public partial class Impostazioni : Form
     {
-        int min, sec;
+        int min, sec, offSec;
         double off;
         int Minutes { get { return min; } 
             set { 
@@ -48,6 +48,25 @@ namespace Cinghiatore
                 else
                     secIncr.Enabled = true;
             } }
+
+        int offSecond
+        {
+            get { return offSec; }
+            set{
+                offSec = value;
+                offSecLbl.Text = offSec.ToString();
+
+                if(offSec == 0)
+                    offSecDecr.Enabled = false;
+                else
+                    offSecDecr.Enabled = true;
+
+                if (offSec == 20)
+                    offSecIncr.Enabled = false;
+                else
+                    offSecIncr.Enabled = true;
+            }
+        }
 
         double Offset { get { return off; }
             set
@@ -93,6 +112,7 @@ namespace Cinghiatore
             Offset = Properties.Settings.Default.Offset;
             outRangeColorBox.BackColor = Properties.Settings.Default.OutColor;
             inRangeColorBox.BackColor = Properties.Settings.Default.InColor;
+            limitColorBox.BackColor = Properties.Settings.Default.LimitColor;
 
             exerciseBox.SelectedIndex = (int)Session.SessionInstance.Mode;
             baudCombo.SelectedItem = Session.SessionInstance.BaudRate.ToString();
@@ -219,18 +239,6 @@ namespace Cinghiatore
             Owner.Enabled = true;
         }
 
-        private void offIncr_Click(object sender, EventArgs e)
-        {
-            if (off < 10)
-                Offset += 0.5;
-        }
-
-        private void offDecr_Click(object sender, EventArgs e)
-        {
-            if (off > 0)
-                Offset -= 0.5;
-        }
-
         string[] AutodetectArduinoPort()
         {
             ManagementScope connectionScope = new ManagementScope();
@@ -256,6 +264,50 @@ namespace Cinghiatore
             }
 
             return null;
+        }
+
+        private void exerciseBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (exerciseBox.SelectedIndex == 2)
+            {
+                groupBox2.Enabled = true;
+                groupBox6.Enabled = true;
+            }
+            else
+            {
+                groupBox2.Enabled = false;
+                groupBox6.Enabled = false;
+            }    
+        }
+
+        private void offIncr_Click_1(object sender, EventArgs e)
+        {
+            if (off < 10)
+                Offset += 0.5;
+        }
+
+        private void offDecr_Click_1(object sender, EventArgs e)
+        {
+            if (off > 0)
+                Offset -= 0.5;
+        }
+
+        private void offSecIncr_Click(object sender, EventArgs e)
+        {
+            if (offSec < 20)
+                offSecond++;
+        }
+
+        private void offSecDecr_Click(object sender, EventArgs e)
+        {
+            if (offSec > 0)
+                offSecond--;
+        }
+
+        private void limitBtn_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+                limitColorBox.BackColor = colorDialog1.Color;
         }
     }
 }

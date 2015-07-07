@@ -66,7 +66,7 @@
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.groupBox1.Controls.Add(this.curVal);
-            this.groupBox1.Location = new System.Drawing.Point(130, 12);
+            this.groupBox1.Location = new System.Drawing.Point(158, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(213, 138);
             this.groupBox1.TabIndex = 4;
@@ -88,7 +88,7 @@
             // 
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.groupBox2.Controls.Add(this.time);
-            this.groupBox2.Location = new System.Drawing.Point(350, 12);
+            this.groupBox2.Location = new System.Drawing.Point(377, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(282, 138);
             this.groupBox2.TabIndex = 5;
@@ -125,7 +125,7 @@
             // rstBtn
             // 
             this.rstBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rstBtn.Location = new System.Drawing.Point(879, 83);
+            this.rstBtn.Location = new System.Drawing.Point(903, 85);
             this.rstBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rstBtn.Name = "rstBtn";
             this.rstBtn.Size = new System.Drawing.Size(112, 75);
@@ -137,10 +137,10 @@
             // settingsBtn
             // 
             this.settingsBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.settingsBtn.Location = new System.Drawing.Point(879, 8);
+            this.settingsBtn.Location = new System.Drawing.Point(903, 3);
             this.settingsBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.settingsBtn.Name = "settingsBtn";
-            this.settingsBtn.Size = new System.Drawing.Size(112, 65);
+            this.settingsBtn.Size = new System.Drawing.Size(112, 75);
             this.settingsBtn.TabIndex = 23;
             this.settingsBtn.Text = "Impostazioni";
             this.settingsBtn.UseVisualStyleBackColor = true;
@@ -163,7 +163,7 @@
             // 
             this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.groupBox3.Controls.Add(this.maxVal);
-            this.groupBox3.Location = new System.Drawing.Point(638, 12);
+            this.groupBox3.Location = new System.Drawing.Point(665, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(213, 138);
             this.groupBox3.TabIndex = 21;

@@ -55,7 +55,7 @@ namespace Cinghiatore
                         if (Session.SessionInstance.IsStarted)
                         {
                             Session.SessionInstance.Stop();
-                            EndSession("Ciao"); //non funzionaaanabnusdhfuhwaesjg allah akbarr!!!!!
+                            EndSession();
                         }
                     }
                 }

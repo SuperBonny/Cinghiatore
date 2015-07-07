@@ -123,6 +123,8 @@ namespace Cinghiatore
             ReloadSerial();
             if(Session.SessionInstance.Port!=null)
                 serialList.SelectedItem = Session.SessionInstance.Port;
+
+            MessageBox.Show(Convert.ToString(serialCheck()));
         }
 
         void ReloadSerial()
@@ -173,6 +175,7 @@ namespace Cinghiatore
         private void button4_Click(object sender, EventArgs e)
         {
             ReloadSerial();
+            serialCheck();
         }
 
         private void abortBtn_Click(object sender, EventArgs e)
@@ -315,6 +318,11 @@ namespace Cinghiatore
 
         private void Impostazioni_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (!serialCheck())
+                e.Cancel = true;
+            else
+                e.Cancel = false;
+
             if (serialList.SelectedItem == null)
             {
                 e.Cancel = true;
@@ -322,6 +330,16 @@ namespace Cinghiatore
             }
             else
                 e.Cancel = false;
+        }
+        public bool serialCheck()
+        {
+            if (serialList.Items.Count == 0)
+            {
+                MessageBox.Show("Collegare il dispositivo al computer", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else
+                return true;
         }
     }
 }

@@ -28,19 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.serialCombo = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.baudCombo = new System.Windows.Forms.ComboBox();
             this.okBtn = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.exerciseBox = new System.Windows.Forms.ListBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.countDownBox = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.minDecr = new System.Windows.Forms.Button();
             this.minIncr = new System.Windows.Forms.Button();
@@ -75,11 +72,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.groupBox1.SuspendLayout();
+            this.baudList = new System.Windows.Forms.ListBox();
+            this.serialList = new System.Windows.Forms.ListBox();
+            this.countDownSwitch = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox8.SuspendLayout();
-            this.groupBox7.SuspendLayout();
+            this.countDownBox.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -96,37 +95,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // serialCombo
-            // 
-            this.serialCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.serialCombo.FormattingEnabled = true;
-            this.serialCombo.Location = new System.Drawing.Point(8, 48);
-            this.serialCombo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.serialCombo.Name = "serialCombo";
-            this.serialCombo.Size = new System.Drawing.Size(140, 28);
-            this.serialCombo.TabIndex = 0;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.baudCombo);
-            this.groupBox1.Controls.Add(this.serialCombo);
-            this.groupBox1.Location = new System.Drawing.Point(4, 5);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(206, 172);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Seriale";
-            // 
             // button4
             // 
             this.button4.BackgroundImage = global::Cinghiatore.Properties.Resources.Refresh_icon;
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.Location = new System.Drawing.Point(156, 48);
+            this.button4.Location = new System.Drawing.Point(267, 36);
             this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(28, 28);
@@ -137,7 +110,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 82);
+            this.label2.Location = new System.Drawing.Point(47, 175);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(86, 20);
@@ -147,29 +120,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 25);
+            this.label1.Location = new System.Drawing.Point(33, 36);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "Porta Seriale";
-            // 
-            // baudCombo
-            // 
-            this.baudCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.baudCombo.FormattingEnabled = true;
-            this.baudCombo.Items.AddRange(new object[] {
-            "4800",
-            "9600",
-            "19200",
-            "38400",
-            "57600",
-            "115200"});
-            this.baudCombo.Location = new System.Drawing.Point(8, 106);
-            this.baudCombo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.baudCombo.Name = "baudCombo";
-            this.baudCombo.Size = new System.Drawing.Size(140, 28);
-            this.baudCombo.TabIndex = 1;
             // 
             // okBtn
             // 
@@ -203,10 +159,11 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.tabPage2.Controls.Add(this.groupBox8);
-            this.tabPage2.Controls.Add(this.groupBox7);
+            this.tabPage2.Controls.Add(this.countDownSwitch);
+            this.tabPage2.Controls.Add(this.countDownBox);
             this.tabPage2.Controls.Add(this.groupBox6);
             this.tabPage2.Controls.Add(this.groupBox2);
+            this.tabPage2.Controls.Add(this.groupBox8);
             this.tabPage2.Location = new System.Drawing.Point(4, 44);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage2.Name = "tabPage2";
@@ -229,39 +186,39 @@
             // 
             // exerciseBox
             // 
-            this.exerciseBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exerciseBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exerciseBox.FormattingEnabled = true;
-            this.exerciseBox.ItemHeight = 55;
+            this.exerciseBox.ItemHeight = 25;
             this.exerciseBox.Items.AddRange(new object[] {
             "Libero",
             "Massimale",
             "Resistenza"});
             this.exerciseBox.Location = new System.Drawing.Point(8, 20);
             this.exerciseBox.Name = "exerciseBox";
-            this.exerciseBox.Size = new System.Drawing.Size(282, 169);
+            this.exerciseBox.Size = new System.Drawing.Size(282, 154);
             this.exerciseBox.TabIndex = 5;
             this.exerciseBox.SelectedIndexChanged += new System.EventHandler(this.exerciseBox_SelectedIndexChanged);
             // 
-            // groupBox7
+            // countDownBox
             // 
-            this.groupBox7.Controls.Add(this.groupBox4);
-            this.groupBox7.Controls.Add(this.label6);
-            this.groupBox7.Controls.Add(this.groupBox5);
-            this.groupBox7.Location = new System.Drawing.Point(14, 222);
-            this.groupBox7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox7.Size = new System.Drawing.Size(298, 192);
-            this.groupBox7.TabIndex = 3;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "CountDown";
+            this.countDownBox.Controls.Add(this.groupBox4);
+            this.countDownBox.Controls.Add(this.label6);
+            this.countDownBox.Controls.Add(this.groupBox5);
+            this.countDownBox.Enabled = false;
+            this.countDownBox.Location = new System.Drawing.Point(14, 222);
+            this.countDownBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.countDownBox.Name = "countDownBox";
+            this.countDownBox.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.countDownBox.Size = new System.Drawing.Size(298, 192);
+            this.countDownBox.TabIndex = 3;
+            this.countDownBox.TabStop = false;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.minDecr);
             this.groupBox4.Controls.Add(this.minIncr);
             this.groupBox4.Controls.Add(this.minLbl);
-            this.groupBox4.Location = new System.Drawing.Point(12, 28);
+            this.groupBox4.Location = new System.Drawing.Point(12, 23);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(100, 160);
             this.groupBox4.TabIndex = 6;
@@ -307,7 +264,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(123, 83);
+            this.label6.Location = new System.Drawing.Point(123, 78);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(40, 59);
             this.label6.TabIndex = 8;
@@ -318,7 +275,7 @@
             this.groupBox5.Controls.Add(this.secDecr);
             this.groupBox5.Controls.Add(this.secIncr);
             this.groupBox5.Controls.Add(this.secLbl);
-            this.groupBox5.Location = new System.Drawing.Point(172, 28);
+            this.groupBox5.Location = new System.Drawing.Point(172, 23);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(100, 160);
             this.groupBox5.TabIndex = 7;
@@ -463,10 +420,10 @@
             this.tabPage3.Controls.Add(this.label4);
             this.tabPage3.Controls.Add(this.groupBox3);
             this.tabPage3.Controls.Add(this.intervalSel);
-            this.tabPage3.Location = new System.Drawing.Point(4, 34);
+            this.tabPage3.Location = new System.Drawing.Point(4, 44);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(847, 445);
+            this.tabPage3.Size = new System.Drawing.Size(847, 435);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Generali";
             // 
@@ -605,12 +562,16 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 34);
+            this.tabPage1.Controls.Add(this.button4);
+            this.tabPage1.Controls.Add(this.serialList);
+            this.tabPage1.Controls.Add(this.baudList);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 44);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage1.Size = new System.Drawing.Size(847, 445);
+            this.tabPage1.Size = new System.Drawing.Size(847, 435);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Nerd";
             // 
@@ -648,6 +609,45 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // baudList
+            // 
+            this.baudList.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.baudList.FormattingEnabled = true;
+            this.baudList.ItemHeight = 25;
+            this.baudList.Items.AddRange(new object[] {
+            "4800",
+            "9600",
+            "19200",
+            "38400",
+            "57600",
+            "115200"});
+            this.baudList.Location = new System.Drawing.Point(140, 175);
+            this.baudList.Name = "baudList";
+            this.baudList.Size = new System.Drawing.Size(120, 154);
+            this.baudList.TabIndex = 4;
+            // 
+            // serialList
+            // 
+            this.serialList.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.serialList.FormattingEnabled = true;
+            this.serialList.ItemHeight = 25;
+            this.serialList.Location = new System.Drawing.Point(140, 36);
+            this.serialList.Name = "serialList";
+            this.serialList.Size = new System.Drawing.Size(120, 104);
+            this.serialList.TabIndex = 5;
+            // 
+            // countDownSwitch
+            // 
+            this.countDownSwitch.AutoSize = true;
+            this.countDownSwitch.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.countDownSwitch.Location = new System.Drawing.Point(25, 220);
+            this.countDownSwitch.Name = "countDownSwitch";
+            this.countDownSwitch.Size = new System.Drawing.Size(168, 24);
+            this.countDownSwitch.TabIndex = 20;
+            this.countDownSwitch.Text = "Conto alla rovescia";
+            this.countDownSwitch.UseVisualStyleBackColor = false;
+            this.countDownSwitch.CheckedChanged += new System.EventHandler(this.countDownSwitch_CheckedChanged);
+            // 
             // Impostazioni
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -663,13 +663,12 @@
             this.Text = "Impostazioni";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Impostazioni_FormClosed);
             this.Load += new System.EventHandler(this.Impostazioni_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.groupBox8.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
+            this.countDownBox.ResumeLayout(false);
+            this.countDownBox.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
@@ -683,6 +682,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.chartColorBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.intervalSel)).EndInit();
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -692,11 +692,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox serialCombo;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox baudCombo;
         private System.Windows.Forms.Button okBtn;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.TabPage tabPage1;
@@ -738,6 +735,9 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.GroupBox countDownBox;
+        private System.Windows.Forms.ListBox serialList;
+        private System.Windows.Forms.ListBox baudList;
+        private System.Windows.Forms.CheckBox countDownSwitch;
     }
 }

@@ -139,6 +139,17 @@ namespace Cinghiatore
             set.ShowInTaskbar = false;
             set.Owner = this;
             set.Show();
+            Reset();
+        }
+
+        void Reset()
+        {
+            Session.SessionInstance.Reset();
+            chart1.Series[0].Points.Clear();
+            button1.Enabled = false;
+            curVal.ResetText();
+            time.ResetText();
+
         }
 
         void EndSession(string message=default(string))
@@ -172,16 +183,7 @@ namespace Cinghiatore
 
         private void rstBtn_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Session.SessionInstance.Reset();
-                chart1.Series[0].Points.Clear();
-                button1.Enabled = false;
-            }
-            catch (Exception ex)
-            {
-                ShowError(ex);
-            }
+            Reset();
         }
 
         void ShowError(Exception e)

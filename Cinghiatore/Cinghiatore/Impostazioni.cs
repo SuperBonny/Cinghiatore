@@ -116,20 +116,21 @@ namespace Cinghiatore
             limitColorBox.BackColor = Properties.Settings.Default.LimitColor;
             offSecond = Properties.Settings.Default.OffTime / 1000;
 
+            countDownSwitch.Checked = Session.SessionInstance.IsCountDown;
             exerciseBox.SelectedIndex = (int)Session.SessionInstance.Mode;
-            baudCombo.SelectedItem = Session.SessionInstance.BaudRate.ToString();
+            baudList.SelectedItem = Session.SessionInstance.BaudRate.ToString();
 
             ReloadSerial();
             if(Session.SessionInstance.Port!=null)
-                serialCombo.SelectedItem = Session.SessionInstance.Port;
+                serialList.SelectedItem = Session.SessionInstance.Port;
         }
 
         void ReloadSerial()
         {
-            serialCombo.Items.Clear();
+            serialList.Items.Clear();
             foreach (string item in AutodetectArduinoPort())
-                serialCombo.Items.Add(item);
-            serialCombo.SelectedIndex = serialCombo.Items.Count - 1;
+                serialList.Items.Add(item);
+            serialList.SelectedIndex = serialList.Items.Count - 1;
         }
 
         private void okBtn_Click(object sender, EventArgs e)
@@ -138,7 +139,7 @@ namespace Cinghiatore
             {
                 Session.SessionInstance.Mode = (SessionMode)exerciseBox.SelectedIndex;
 
-                if (Minutes > 0 || Seconds > 0)
+                if (countDownSwitch.Checked)
                 {
                     Session.SessionInstance.IsCountDown = true;
                     Session.SessionInstance.Time = new TimeSpan(0, Minutes, Seconds);
@@ -157,8 +158,8 @@ namespace Cinghiatore
                 Properties.Settings.Default.LimitColor = limitColorBox.BackColor;
                 Properties.Settings.Default.OffTime = offSec * 1000;
 
-                Session.SessionInstance.Port = serialCombo.Text;
-                Session.SessionInstance.BaudRate = Convert.ToInt32(baudCombo.Text);
+                Session.SessionInstance.Port = serialList.Text;
+                Session.SessionInstance.BaudRate = Convert.ToInt32(baudList.Text);
 
                 Session.SessionInstance.Reset();
                 this.Close();
@@ -305,6 +306,11 @@ namespace Cinghiatore
         {
             if (offSec > 1)
                 offSecond--;
+        }
+
+        private void countDownSwitch_CheckedChanged(object sender, EventArgs e)
+        {
+            countDownBox.Enabled = countDownSwitch.Checked;
         }
     }
 }

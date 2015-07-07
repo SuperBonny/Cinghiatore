@@ -23,7 +23,7 @@ namespace Cinghiatore
             File.WriteAllText(path, "Tempo [s];Forza [Kg];Media [Kg]" + Environment.NewLine + ";;" + Math.Round(Session.SessionInstance.Average, 2) + Environment.NewLine);
             foreach (var item in Session.SessionInstance.Values)
             {
-                File.AppendAllText(path, item[0] + ";" + item[1] + Environment.NewLine);
+                File.AppendAllText(path, Math.Round(item[0] / 1000, 2) + ";" + item[1] + Environment.NewLine); //!!!da debuggare!!!
             }
             return true;
         }

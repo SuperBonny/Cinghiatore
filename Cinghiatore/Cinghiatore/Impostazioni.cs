@@ -312,5 +312,16 @@ namespace Cinghiatore
         {
             countDownBox.Enabled = countDownSwitch.Checked;
         }
+
+        private void Impostazioni_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (serialList.SelectedItem == null)
+            {
+                e.Cancel = true;
+                MessageBox.Show("Selezionare una porta seriale", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+                e.Cancel = false;
+        }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button4 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -58,7 +59,6 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.intervalLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.limitColorBox = new System.Windows.Forms.PictureBox();
             this.limitBtn = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -75,6 +75,8 @@
             this.baudList = new System.Windows.Forms.ListBox();
             this.serialList = new System.Windows.Forms.ListBox();
             this.countDownSwitch = new System.Windows.Forms.CheckBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label3 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox8.SuspendLayout();
@@ -84,7 +86,6 @@
             this.groupBox6.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.limitColorBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inRangeColorBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.outRangeColorBox)).BeginInit();
@@ -99,10 +100,10 @@
             // 
             this.button4.BackgroundImage = global::Cinghiatore.Properties.Resources.Refresh_icon;
             this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.Location = new System.Drawing.Point(267, 36);
+            this.button4.Location = new System.Drawing.Point(377, 33);
             this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(28, 28);
+            this.button4.Size = new System.Drawing.Size(36, 36);
             this.button4.TabIndex = 4;
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
@@ -110,7 +111,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(47, 175);
+            this.label2.Location = new System.Drawing.Point(30, 140);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(86, 20);
@@ -120,7 +121,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 36);
+            this.label1.Location = new System.Drawing.Point(30, 10);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 20);
@@ -130,9 +131,9 @@
             // okBtn
             // 
             this.okBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.okBtn.Location = new System.Drawing.Point(741, 3);
+            this.okBtn.Location = new System.Drawing.Point(751, 12);
             this.okBtn.Name = "okBtn";
-            this.okBtn.Size = new System.Drawing.Size(105, 105);
+            this.okBtn.Size = new System.Drawing.Size(85, 85);
             this.okBtn.TabIndex = 8;
             this.okBtn.Text = "Ok";
             this.okBtn.UseVisualStyleBackColor = true;
@@ -202,14 +203,14 @@
             // countDownBox
             // 
             this.countDownBox.Controls.Add(this.groupBox4);
-            this.countDownBox.Controls.Add(this.label6);
             this.countDownBox.Controls.Add(this.groupBox5);
+            this.countDownBox.Controls.Add(this.label6);
             this.countDownBox.Enabled = false;
             this.countDownBox.Location = new System.Drawing.Point(14, 222);
             this.countDownBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.countDownBox.Name = "countDownBox";
             this.countDownBox.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.countDownBox.Size = new System.Drawing.Size(298, 192);
+            this.countDownBox.Size = new System.Drawing.Size(263, 192);
             this.countDownBox.TabIndex = 3;
             this.countDownBox.TabStop = false;
             // 
@@ -218,7 +219,7 @@
             this.groupBox4.Controls.Add(this.minDecr);
             this.groupBox4.Controls.Add(this.minIncr);
             this.groupBox4.Controls.Add(this.minLbl);
-            this.groupBox4.Location = new System.Drawing.Point(12, 23);
+            this.groupBox4.Location = new System.Drawing.Point(11, 23);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(100, 160);
             this.groupBox4.TabIndex = 6;
@@ -264,7 +265,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(123, 78);
+            this.label6.Location = new System.Drawing.Point(111, 78);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(40, 59);
             this.label6.TabIndex = 8;
@@ -275,7 +276,7 @@
             this.groupBox5.Controls.Add(this.secDecr);
             this.groupBox5.Controls.Add(this.secIncr);
             this.groupBox5.Controls.Add(this.secLbl);
-            this.groupBox5.Location = new System.Drawing.Point(172, 23);
+            this.groupBox5.Location = new System.Drawing.Point(149, 23);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(100, 160);
             this.groupBox5.TabIndex = 7;
@@ -323,9 +324,9 @@
             this.groupBox6.Controls.Add(this.offSecIncr);
             this.groupBox6.Controls.Add(this.offSecLbl);
             this.groupBox6.Enabled = false;
-            this.groupBox6.Location = new System.Drawing.Point(645, 9);
+            this.groupBox6.Location = new System.Drawing.Point(600, 26);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(150, 246);
+            this.groupBox6.Size = new System.Drawing.Size(100, 160);
             this.groupBox6.TabIndex = 18;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Secondi";
@@ -333,10 +334,10 @@
             // offSecDecr
             // 
             this.offSecDecr.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.offSecDecr.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.offSecDecr.Location = new System.Drawing.Point(3, 181);
+            this.offSecDecr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.offSecDecr.Location = new System.Drawing.Point(3, 117);
             this.offSecDecr.Name = "offSecDecr";
-            this.offSecDecr.Size = new System.Drawing.Size(144, 62);
+            this.offSecDecr.Size = new System.Drawing.Size(94, 40);
             this.offSecDecr.TabIndex = 2;
             this.offSecDecr.Text = "-";
             this.offSecDecr.UseVisualStyleBackColor = true;
@@ -345,10 +346,10 @@
             // offSecIncr
             // 
             this.offSecIncr.Dock = System.Windows.Forms.DockStyle.Top;
-            this.offSecIncr.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.offSecIncr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.offSecIncr.Location = new System.Drawing.Point(3, 22);
             this.offSecIncr.Name = "offSecIncr";
-            this.offSecIncr.Size = new System.Drawing.Size(144, 62);
+            this.offSecIncr.Size = new System.Drawing.Size(94, 40);
             this.offSecIncr.TabIndex = 1;
             this.offSecIncr.Text = "+";
             this.offSecIncr.UseVisualStyleBackColor = true;
@@ -357,10 +358,10 @@
             // offSecLbl
             // 
             this.offSecLbl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.offSecLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.offSecLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Bold);
             this.offSecLbl.Location = new System.Drawing.Point(3, 22);
             this.offSecLbl.Name = "offSecLbl";
-            this.offSecLbl.Size = new System.Drawing.Size(144, 221);
+            this.offSecLbl.Size = new System.Drawing.Size(94, 135);
             this.offSecLbl.TabIndex = 0;
             this.offSecLbl.Text = "0";
             this.offSecLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -371,9 +372,9 @@
             this.groupBox2.Controls.Add(this.offIncr);
             this.groupBox2.Controls.Add(this.OffLbl);
             this.groupBox2.Enabled = false;
-            this.groupBox2.Location = new System.Drawing.Point(438, 9);
+            this.groupBox2.Location = new System.Drawing.Point(484, 26);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(150, 246);
+            this.groupBox2.Size = new System.Drawing.Size(110, 160);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Offset";
@@ -381,10 +382,10 @@
             // offDecr
             // 
             this.offDecr.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.offDecr.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.offDecr.Location = new System.Drawing.Point(3, 181);
+            this.offDecr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.offDecr.Location = new System.Drawing.Point(3, 117);
             this.offDecr.Name = "offDecr";
-            this.offDecr.Size = new System.Drawing.Size(144, 62);
+            this.offDecr.Size = new System.Drawing.Size(104, 40);
             this.offDecr.TabIndex = 2;
             this.offDecr.Text = "-";
             this.offDecr.UseVisualStyleBackColor = true;
@@ -393,10 +394,10 @@
             // offIncr
             // 
             this.offIncr.Dock = System.Windows.Forms.DockStyle.Top;
-            this.offIncr.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.offIncr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.offIncr.Location = new System.Drawing.Point(3, 22);
             this.offIncr.Name = "offIncr";
-            this.offIncr.Size = new System.Drawing.Size(144, 62);
+            this.offIncr.Size = new System.Drawing.Size(104, 40);
             this.offIncr.TabIndex = 1;
             this.offIncr.Text = "+";
             this.offIncr.UseVisualStyleBackColor = true;
@@ -405,10 +406,10 @@
             // OffLbl
             // 
             this.OffLbl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OffLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OffLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Bold);
             this.OffLbl.Location = new System.Drawing.Point(3, 22);
             this.OffLbl.Name = "OffLbl";
-            this.OffLbl.Size = new System.Drawing.Size(144, 221);
+            this.OffLbl.Size = new System.Drawing.Size(104, 135);
             this.OffLbl.TabIndex = 0;
             this.OffLbl.Text = "0.0";
             this.OffLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -416,10 +417,18 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.tabPage3.Controls.Add(this.label3);
+            this.tabPage3.Controls.Add(this.limitColorBox);
             this.tabPage3.Controls.Add(this.intervalLabel);
+            this.tabPage3.Controls.Add(this.limitBtn);
             this.tabPage3.Controls.Add(this.label4);
-            this.tabPage3.Controls.Add(this.groupBox3);
+            this.tabPage3.Controls.Add(this.inRangeColorBox);
+            this.tabPage3.Controls.Add(this.button2);
             this.tabPage3.Controls.Add(this.intervalSel);
+            this.tabPage3.Controls.Add(this.outRangeColorBox);
+            this.tabPage3.Controls.Add(this.chartColorBox);
+            this.tabPage3.Controls.Add(this.button3);
+            this.tabPage3.Controls.Add(this.button1);
             this.tabPage3.Location = new System.Drawing.Point(4, 44);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage3.Name = "tabPage3";
@@ -429,44 +438,26 @@
             // 
             // intervalLabel
             // 
-            this.intervalLabel.AutoSize = true;
-            this.intervalLabel.Location = new System.Drawing.Point(86, 302);
+            this.intervalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.intervalLabel.Location = new System.Drawing.Point(29, 292);
             this.intervalLabel.Name = "intervalLabel";
-            this.intervalLabel.Size = new System.Drawing.Size(57, 20);
+            this.intervalLabel.Size = new System.Drawing.Size(792, 25);
             this.intervalLabel.TabIndex = 14;
             this.intervalLabel.Text = "200ms";
+            this.intervalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 220);
+            this.label4.Location = new System.Drawing.Point(30, 220);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(180, 20);
             this.label4.TabIndex = 12;
             this.label4.Text = "Intervallo di acquisizione";
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.limitColorBox);
-            this.groupBox3.Controls.Add(this.limitBtn);
-            this.groupBox3.Controls.Add(this.button1);
-            this.groupBox3.Controls.Add(this.inRangeColorBox);
-            this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.Controls.Add(this.outRangeColorBox);
-            this.groupBox3.Controls.Add(this.button3);
-            this.groupBox3.Controls.Add(this.chartColorBox);
-            this.groupBox3.Location = new System.Drawing.Point(9, 5);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox3.Size = new System.Drawing.Size(200, 208);
-            this.groupBox3.TabIndex = 10;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Colori";
-            // 
             // limitColorBox
             // 
-            this.limitColorBox.Location = new System.Drawing.Point(152, 165);
+            this.limitColorBox.Location = new System.Drawing.Point(394, 178);
             this.limitColorBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.limitColorBox.Name = "limitColorBox";
             this.limitColorBox.Size = new System.Drawing.Size(34, 35);
@@ -475,7 +466,7 @@
             // 
             // limitBtn
             // 
-            this.limitBtn.Location = new System.Drawing.Point(8, 165);
+            this.limitBtn.Location = new System.Drawing.Point(250, 180);
             this.limitBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.limitBtn.Name = "limitBtn";
             this.limitBtn.Size = new System.Drawing.Size(136, 35);
@@ -486,7 +477,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(8, 29);
+            this.button1.Location = new System.Drawing.Point(250, 44);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(136, 35);
@@ -497,7 +488,7 @@
             // 
             // inRangeColorBox
             // 
-            this.inRangeColorBox.Location = new System.Drawing.Point(152, 118);
+            this.inRangeColorBox.Location = new System.Drawing.Point(394, 133);
             this.inRangeColorBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.inRangeColorBox.Name = "inRangeColorBox";
             this.inRangeColorBox.Size = new System.Drawing.Size(34, 35);
@@ -506,7 +497,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(8, 74);
+            this.button2.Location = new System.Drawing.Point(250, 89);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(136, 35);
@@ -517,7 +508,7 @@
             // 
             // outRangeColorBox
             // 
-            this.outRangeColorBox.Location = new System.Drawing.Point(152, 74);
+            this.outRangeColorBox.Location = new System.Drawing.Point(394, 89);
             this.outRangeColorBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.outRangeColorBox.Name = "outRangeColorBox";
             this.outRangeColorBox.Size = new System.Drawing.Size(34, 35);
@@ -526,7 +517,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(8, 118);
+            this.button3.Location = new System.Drawing.Point(250, 133);
             this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(136, 35);
@@ -538,7 +529,7 @@
             // chartColorBox
             // 
             this.chartColorBox.BackColor = System.Drawing.Color.Transparent;
-            this.chartColorBox.Location = new System.Drawing.Point(152, 29);
+            this.chartColorBox.Location = new System.Drawing.Point(394, 44);
             this.chartColorBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chartColorBox.Name = "chartColorBox";
             this.chartColorBox.Size = new System.Drawing.Size(34, 35);
@@ -548,14 +539,15 @@
             // intervalSel
             // 
             this.intervalSel.LargeChange = 50;
-            this.intervalSel.Location = new System.Drawing.Point(9, 252);
+            this.intervalSel.Location = new System.Drawing.Point(34, 248);
             this.intervalSel.Maximum = 1000;
             this.intervalSel.Minimum = 20;
             this.intervalSel.Name = "intervalSel";
-            this.intervalSel.Size = new System.Drawing.Size(208, 69);
+            this.intervalSel.Size = new System.Drawing.Size(787, 69);
             this.intervalSel.SmallChange = 5;
             this.intervalSel.TabIndex = 13;
             this.intervalSel.TickFrequency = 100;
+            this.intervalSel.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             this.intervalSel.Value = 200;
             this.intervalSel.ValueChanged += new System.EventHandler(this.intervalSel_ValueChanged);
             // 
@@ -621,7 +613,7 @@
             "38400",
             "57600",
             "115200"});
-            this.baudList.Location = new System.Drawing.Point(140, 175);
+            this.baudList.Location = new System.Drawing.Point(250, 163);
             this.baudList.Name = "baudList";
             this.baudList.Size = new System.Drawing.Size(120, 154);
             this.baudList.TabIndex = 4;
@@ -631,7 +623,7 @@
             this.serialList.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.serialList.FormattingEnabled = true;
             this.serialList.ItemHeight = 25;
-            this.serialList.Location = new System.Drawing.Point(140, 36);
+            this.serialList.Location = new System.Drawing.Point(250, 33);
             this.serialList.Name = "serialList";
             this.serialList.Size = new System.Drawing.Size(120, 104);
             this.serialList.TabIndex = 5;
@@ -647,6 +639,15 @@
             this.countDownSwitch.Text = "Conto alla rovescia";
             this.countDownSwitch.UseVisualStyleBackColor = false;
             this.countDownSwitch.CheckedChanged += new System.EventHandler(this.countDownSwitch_CheckedChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(30, 10);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(101, 20);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Colori grafico";
             // 
             // Impostazioni
             // 
@@ -675,7 +676,6 @@
             this.groupBox2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.limitColorBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inRangeColorBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.outRangeColorBox)).EndInit();
@@ -705,7 +705,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Label label4;
@@ -739,5 +738,7 @@
         private System.Windows.Forms.ListBox serialList;
         private System.Windows.Forms.ListBox baudList;
         private System.Windows.Forms.CheckBox countDownSwitch;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label label3;
     }
 }

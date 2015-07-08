@@ -600,7 +600,7 @@
             "115200"});
             this.baudList.Location = new System.Drawing.Point(250, 163);
             this.baudList.Name = "baudList";
-            this.baudList.Size = new System.Drawing.Size(120, 129);
+            this.baudList.Size = new System.Drawing.Size(120, 154);
             this.baudList.TabIndex = 4;
             // 
             // panel1

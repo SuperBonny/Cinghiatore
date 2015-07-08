@@ -58,7 +58,7 @@ namespace Cinghiatore
             avgVal.Text = Math.Round(Session.SessionInstance.Average, 2).ToString();
 
             if (Session.SessionInstance.IsCountDown)
-                timer.Text = String.Format("{0:00}:{1:00}", Session.SessionInstance.Time.Minutes, Session.SessionInstance.Time.Seconds);
+                timer.Text = Session.SessionInstance.GetElapsed();
             else
                 timer.Text = Session.SessionInstance.GetTime();
 

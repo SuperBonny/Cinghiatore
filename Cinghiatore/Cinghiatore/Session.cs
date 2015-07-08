@@ -132,6 +132,11 @@ namespace Cinghiatore
                 return String.Format("{0:00}:{1:00}", watch.Elapsed.Minutes, watch.Elapsed.Seconds);
         }
 
+        public string GetElapsed()
+        {
+            return String.Format("{0:00}:{1:00}", watch.Elapsed.Minutes, watch.Elapsed.Seconds);
+        }
+
         public bool Connect()
         {
             try

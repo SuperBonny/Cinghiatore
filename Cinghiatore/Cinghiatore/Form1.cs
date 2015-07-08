@@ -13,7 +13,7 @@ namespace Cinghiatore
     {
         public int MaxOffTime { get; set; }
         Stopwatch off;
-        public  SerialPort arduino = new SerialPort();
+        public SerialPort arduino = new SerialPort();
 
         Color chartColor, inRangeColor, outRangeColor, limitColor;
         double offset;
@@ -49,7 +49,7 @@ namespace Cinghiatore
                     if (!off.IsRunning)
                         off.Start();
                     chart1.Series[0].Color = outRangeColor;
-                    
+
                     if (off.ElapsedMilliseconds >= MaxOffTime)
                     {
                         if (Session.SessionInstance.IsStarted)
@@ -122,10 +122,10 @@ namespace Cinghiatore
 
             off = new Stopwatch();
             chartColor = Properties.Settings.Default.ChartColor;
-            inRangeColor=Properties.Settings.Default.InColor;
-            outRangeColor=Properties.Settings.Default.OutColor;
+            inRangeColor = Properties.Settings.Default.InColor;
+            outRangeColor = Properties.Settings.Default.OutColor;
             limitColor = Properties.Settings.Default.LimitColor;
-            offset=Properties.Settings.Default.Offset;
+            offset = Properties.Settings.Default.Offset;
             MaxOffTime = Properties.Settings.Default.OffTime;
             Session.SessionInstance.Interval = Properties.Settings.Default.Interval;
 
@@ -152,7 +152,7 @@ namespace Cinghiatore
 
         }
 
-        void EndSession(string message=default(string))
+        void EndSession(string message = default(string))
         {
             Session.SessionInstance.Stop();
             Resoconto res = new Resoconto();
@@ -168,8 +168,8 @@ namespace Cinghiatore
                 chart1.Series[0].Points.Clear();
                 try
                 {
-                Session.SessionInstance.Read();
-            }
+                    Session.SessionInstance.Read();
+                }
                 catch (InvalidOperationException ex)
                 {
                     ShowError(ex);

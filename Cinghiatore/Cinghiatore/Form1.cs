@@ -36,45 +36,52 @@ namespace Cinghiatore
 
         void Session_NewData(object sender, SerialEventArgs e)
         {
-            if (Session.SessionInstance.Mode == SessionMode.Resistenza)
+            try
             {
-                if (e.Value[1] > -offset && e.Value[1] < offset)
+                if (Session.SessionInstance.Mode == SessionMode.Resistenza)
                 {
-                    if (off.IsRunning)
-                        off.Reset();
-                    chart1.Series[0].Color = inRangeColor;
-                }
-                else
-                {
-                    if (!off.IsRunning)
-                        off.Start();
-                    chart1.Series[0].Color = outRangeColor;
-                    
-                    if (off.ElapsedMilliseconds >= MaxOffTime)
+                    if (e.Value[1] > -offset && e.Value[1] < offset)
                     {
-                        if (Session.SessionInstance.IsStarted)
+                        if (off.IsRunning)
+                            off.Reset();
+                        chart1.Series[0].Color = inRangeColor;
+                    }
+                    else
+                    {
+                        if (!off.IsRunning)
+                            off.Start();
+                        chart1.Series[0].Color = outRangeColor;
+
+                        if (off.ElapsedMilliseconds >= MaxOffTime)
                         {
-                            Session.SessionInstance.Stop();
-                            EndSession();
+                            if (Session.SessionInstance.IsStarted)
+                            {
+                                Session.SessionInstance.Stop();
+                                EndSession();
+                            }
                         }
                     }
                 }
+                else if (Session.SessionInstance.Mode == SessionMode.Massimale)
+                    chart1.Series[0].Color = chartColor;
+                else if (Session.SessionInstance.Mode == SessionMode.Libero)
+                    chart1.Series[0].Color = chartColor;
+
+                chart1.ChartAreas[0].AxisY.Maximum = Session.SessionInstance.Max + 2;
+                chart1.ChartAreas[0].AxisY.Minimum = Session.SessionInstance.Min - 2;
+
+                Task.Factory.StartNew(() => chart1.Series[0].Points.AddXY(e.Value[0] / 1000, e.Value[1]));
+
+                time.Text = Session.SessionInstance.GetTime();
+
+                curVal.Text = Convert.ToString(e.Value[1]);
+
+                maxVal.Text = Session.SessionInstance.Max.ToString();
             }
-            else if (Session.SessionInstance.Mode == SessionMode.Massimale)
-                chart1.Series[0].Color = chartColor;
-            else if (Session.SessionInstance.Mode == SessionMode.Libero)
-                chart1.Series[0].Color = chartColor;
-
-            chart1.ChartAreas[0].AxisY.Maximum = Session.SessionInstance.Max + 2;
-            chart1.ChartAreas[0].AxisY.Minimum = Session.SessionInstance.Min - 2;
-
-            Task.Factory.StartNew(() => chart1.Series[0].Points.AddXY(e.Value[0] / 1000, e.Value[1]));
-
-            time.Text = Session.SessionInstance.GetTime();
-
-            curVal.Text = Convert.ToString(e.Value[1]);
-
-            maxVal.Text = Session.SessionInstance.Max.ToString();
+            catch
+            {
+                
+            }
         }
 
         private void startBtn_Click(object sender, EventArgs e)
@@ -162,22 +169,38 @@ namespace Cinghiatore
 
         private void tareBtn_Click(object sender, EventArgs e)
         {
-            try
+            if (Session.SessionInstance.IsStarted)
             {
-                Session.SessionInstance.Tare();
-                chart1.Series[0].Points.Clear();
                 try
                 {
-                Session.SessionInstance.Read();
-            }
-                catch (InvalidOperationException ex)
+                    Session.SessionInstance.Stop();
+                    Session.SessionInstance.Tare();
+                    chart1.Series[0].Points.Clear();
+                    Session.SessionInstance.Start();
+                    try
+                    {
+                        Session.SessionInstance.Read();
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        ShowError(ex);
+                    }
+                }
+                catch (Exception ex)
                 {
                     ShowError(ex);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                ShowError(ex);
+                try
+                {
+                    Session.SessionInstance.Tare();
+                }
+                catch (Exception ex)
+                {
+                    ShowError(ex);
+                }
             }
         }
 

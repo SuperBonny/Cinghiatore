@@ -93,7 +93,7 @@ namespace Cinghiatore
 
         private void Impostazioni_Load(object sender, EventArgs e)
         {
-            this.Owner.Enabled = false;
+            this.Owner.Enabled = true;
 
             if (Session.SessionInstance.IsCountDown)
             {
@@ -123,8 +123,6 @@ namespace Cinghiatore
             ReloadSerial();
             if(Session.SessionInstance.Port!=null)
                 serialList.SelectedItem = Session.SessionInstance.Port;
-
-            MessageBox.Show(Convert.ToString(serialCheck()));
         }
 
         void ReloadSerial()
@@ -330,6 +328,14 @@ namespace Cinghiatore
             }
             else
                 e.Cancel = false;
+
+            if(e.Cancel == true){
+               var result = MessageBox.Show("Sicuro di voler chiudere?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+               if (result == DialogResult.Yes)
+                   e.Cancel = false;
+               else
+                   e.Cancel = true;
+            }
         }
         public bool serialCheck()
         {

@@ -58,7 +58,7 @@ namespace Cinghiatore
             avgVal.Text = Math.Round(Session.SessionInstance.Average, 2).ToString();
 
             if (Session.SessionInstance.IsCountDown)
-                timer.Text = String.Format("{0:00}:{1:00}", Session.SessionInstance.Time.Minutes, Session.SessionInstance.Time.Seconds);
+                timer.Text = Session.SessionInstance.GetElapsed();
             else
                 timer.Text = Session.SessionInstance.GetTime();
 
@@ -86,8 +86,9 @@ namespace Cinghiatore
                 chart1.Series[0].Points.AddXY(Session.SessionInstance.Values[i][0] / 1000, Session.SessionInstance.Values[i][1]);
                 chart1.Series[1].Points.AddXY(Session.SessionInstance.Values[i][0] / 1000, avg / i);
 
-                chart1.ChartAreas[0].AxisY.Maximum = Session.SessionInstance.Max;
-                chart1.ChartAreas[0].AxisY.Minimum = Session.SessionInstance.Min;
+                chart1.ChartAreas[0].AxisY.Maximum = Session.SessionInstance.Max + 1;
+                chart1.ChartAreas[0].AxisY.Minimum = Session.SessionInstance.Min - 1;
+                
             }
         }
 

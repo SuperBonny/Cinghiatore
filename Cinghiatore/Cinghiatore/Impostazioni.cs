@@ -157,6 +157,7 @@ namespace Cinghiatore
                 Properties.Settings.Default.InColor = inRangeColorBox.BackColor;
                 Properties.Settings.Default.LimitColor = limitColorBox.BackColor;
                 Properties.Settings.Default.OffTime = offSec * 1000;
+                Properties.Settings.Default.Save();
 
                 Session.SessionInstance.Port = serialList.Text;
                 Session.SessionInstance.BaudRate = Convert.ToInt32(baudList.Text);

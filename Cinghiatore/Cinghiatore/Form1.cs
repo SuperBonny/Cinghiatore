@@ -70,7 +70,7 @@ namespace Cinghiatore
                 chart1.ChartAreas[0].AxisY.Maximum = Session.SessionInstance.Max + 2;
                 chart1.ChartAreas[0].AxisY.Minimum = Session.SessionInstance.Min - 2;
 
-                Task.Factory.StartNew(() => chart1.Series[0].Points.AddXY(e.Value[0] / 1000, e.Value[1]));
+                chart1.Series[0].Points.AddXY(e.Value[0] / 1000, e.Value[1]); //TASK!!
 
                 time.Text = Session.SessionInstance.GetTime();
 
@@ -78,9 +78,9 @@ namespace Cinghiatore
 
                 maxVal.Text = Session.SessionInstance.Max.ToString();
             }
-            catch
+            catch(Exception ex)
             {
-                
+                ShowError(ex);
             }
         }
 

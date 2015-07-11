@@ -2,8 +2,6 @@
 using System.Windows.Forms;
 using System.IO.Ports;
 using System.Drawing;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Windows.Forms.DataVisualization.Charting;
 

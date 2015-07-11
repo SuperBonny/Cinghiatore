@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.IO.Ports;
 using System.Timers;
 
@@ -42,7 +41,7 @@ namespace Cinghiatore
             set
             {
                 arduino.BaudRate = value;
-        }
+            }
         }
         public bool IsStarted
         {
@@ -106,7 +105,7 @@ namespace Cinghiatore
             if (val < min)
                 min = val;
 
-            if(IsStarted)
+            if (IsStarted)
                 NewData(this, new SerialEventArgs(new double[] { time, val }));
 
             if (watch.Elapsed.Ticks >= Time.Ticks)
@@ -120,9 +119,9 @@ namespace Cinghiatore
 
         public bool Read()
         {
-                arduino.Write("r");
-                return true;
-            }
+            arduino.Write("r");
+            return true;
+        }
 
         public string GetTime()
         {

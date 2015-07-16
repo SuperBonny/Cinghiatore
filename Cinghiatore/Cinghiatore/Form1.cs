@@ -23,7 +23,7 @@ namespace Cinghiatore
         {
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
-            zedGraphControl1.GraphPane.CurveList.Add(new CurveItem());
+            zedGraphControl1.GraphPane.CurveList.Add(new CurveItem())
             Session.SessionInstance.NewData += Session_NewData;
             Session.SessionInstance.RunningChanged += SessionInstance_RunningChanged;
         }

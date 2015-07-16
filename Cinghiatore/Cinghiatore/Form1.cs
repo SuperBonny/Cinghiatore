@@ -6,11 +6,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Windows.Forms.DataVisualization.Charting;
+using ZedGraph;
 
 namespace Cinghiatore
 {
     public partial class Form1 : Form
     {
+        GraphPane panel = new GraphPane();
+
         public int MaxOffTime { get; set; }
         Stopwatch off;
         public  SerialPort arduino = new SerialPort();
@@ -22,6 +25,7 @@ namespace Cinghiatore
         {
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
+            zedGraphControl1.GraphPane.CurveList.Add(new CurveItem());
             Session.SessionInstance.NewData += Session_NewData;
             Session.SessionInstance.RunningChanged += SessionInstance_RunningChanged;
         }
@@ -70,13 +74,19 @@ namespace Cinghiatore
                 chart1.ChartAreas[0].AxisY.Maximum = Session.SessionInstance.Max + 2;
                 chart1.ChartAreas[0].AxisY.Minimum = Session.SessionInstance.Min - 2;
 
-                chart1.Series[0].Points.AddXY(e.Value[0] / 1000, e.Value[1]); //TASK!!
+
+                //line.AddPoint(e.Value[0] / 1000, e.Value[1]);// = panel.AddCurve(null, p, chartColor);
+                //chart1.Series[0].Points.AddXY(e.Value[0] / 1000, e.Value[1]); //TASK!!
+
+                zedGraphControl1.GraphPane.CurveList[0].AddPoint(e.Value[0] / 1000, e.Value[1]);
 
                 time.Text = Session.SessionInstance.GetTime();
-
+                
                 curVal.Text = Convert.ToString(e.Value[1]);
 
                 maxVal.Text = Session.SessionInstance.Max.ToString();
+
+                zedGraphControl1.AxisChange(); 
             }
             catch(Exception ex)
             {

@@ -15,7 +15,7 @@ namespace Cinghiatore
     public partial class Impostazioni : Form
     {
         int min, sec, offSec;
-        double off;
+        double off, height, weight;
         int Minutes { get { return min; } 
             set { 
                 min = value; 
@@ -85,6 +85,41 @@ namespace Cinghiatore
                     offIncr.Enabled = true;
             }
         }
+        double athleteHeight { get { return height; }
+            set
+            {
+                height = value;
+                heightLbl.Text = height.ToString();
+
+                if (height == 1.20)
+                    heightDecr.Enabled = false;
+                else
+                    heightDecr.Enabled = true;
+
+                if (height == 2.50)
+                    heightIncr.Enabled = false;
+                else
+                    heightIncr.Enabled = true;
+            }
+        }
+
+        double athleteWeight { get { return weight; }
+            set
+            {
+                weight = value;
+                weightLbl.Text = weight.ToString();
+
+                if (weight == 20)
+                    weightDecr.Enabled = false;
+                else
+                    weightDecr.Enabled = true;
+
+                if (weight == 150)
+                    weightIncr.Enabled = false;
+                else
+                    weightIncr.Enabled = true;
+            }
+        }
 
         public Impostazioni()
         {
@@ -105,6 +140,9 @@ namespace Cinghiatore
                 Minutes = 0;
                 Seconds = 0;
             }
+
+            weight = 20;
+            height = 1.2;
 
             intervalSel.Value = (int)Properties.Settings.Default.Interval;
             chartColorBox.BackColor = Properties.Settings.Default.ChartColor;
@@ -347,6 +385,30 @@ namespace Cinghiatore
             }
             else
                 return true;
+        }
+
+        private void heightIncr_Click(object sender, EventArgs e)
+        {
+            if (athleteHeight < 2.50)
+                athleteHeight += 0.01;
+        }
+
+        private void heightDecr_Click(object sender, EventArgs e)
+        {
+           if (athleteHeight > 1.20)
+            athleteHeight -= 0.01;
+        }
+
+        private void weightIncr_Click(object sender, EventArgs e)
+        {
+            if (athleteWeight < 150)
+                athleteWeight++;
+        }
+
+        private void weightDecr_Click(object sender, EventArgs e)
+        {
+            if (athleteWeight > 20)
+                athleteWeight--;
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Cinghiatore
         Stopwatch watch;
         Timer serialHandler;
         SerialPort arduino = new SerialPort();
+
         List<double[]> values = new List<double[]>();
         public event EventHandler<SerialEventArgs> NewData;
         public event EventHandler RunningChanged;
@@ -23,6 +24,8 @@ namespace Cinghiatore
         public double Min { get { return min; } }
         public List<double[]> Values { get { return values; } }
         public bool IsCountDown { get; set; }
+        public double height { get; set; }
+        public double weight { get; set; }
         public double Average
         {
             get
@@ -42,8 +45,9 @@ namespace Cinghiatore
             set
             {
                 arduino.BaudRate = value;
+            }
         }
-        }
+        
         public bool IsStarted
         {
             get

@@ -36,7 +36,15 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.weightDecr = new System.Windows.Forms.Button();
+            this.weightIncr = new System.Windows.Forms.Button();
+            this.weightLbl = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.heightDecr = new System.Windows.Forms.Button();
+            this.heightIncr = new System.Windows.Forms.Button();
+            this.heightLbl = new System.Windows.Forms.Label();
             this.exerciseBox = new System.Windows.Forms.ListBox();
             this.countDownSwitch = new System.Windows.Forms.CheckBox();
             this.countDownBox = new System.Windows.Forms.GroupBox();
@@ -79,6 +87,8 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.countDownBox.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -156,7 +166,9 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Controls.Add(this.label7);
+            this.tabPage2.Controls.Add(this.groupBox3);
             this.tabPage2.Controls.Add(this.exerciseBox);
             this.tabPage2.Controls.Add(this.countDownSwitch);
             this.tabPage2.Controls.Add(this.countDownBox);
@@ -169,6 +181,58 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Esercizi";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.weightDecr);
+            this.groupBox1.Controls.Add(this.weightIncr);
+            this.groupBox1.Controls.Add(this.weightLbl);
+            this.groupBox1.Location = new System.Drawing.Point(411, 141);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(92, 104);
+            this.groupBox1.TabIndex = 20;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Peso [Kg]";
+            // 
+            // weightDecr
+            // 
+            this.weightDecr.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.weightDecr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.weightDecr.Location = new System.Drawing.Point(2, 76);
+            this.weightDecr.Margin = new System.Windows.Forms.Padding(2);
+            this.weightDecr.Name = "weightDecr";
+            this.weightDecr.Size = new System.Drawing.Size(88, 26);
+            this.weightDecr.TabIndex = 2;
+            this.weightDecr.Text = "-";
+            this.weightDecr.UseVisualStyleBackColor = true;
+            this.weightDecr.Click += new System.EventHandler(this.weightDecr_Click);
+            // 
+            // weightIncr
+            // 
+            this.weightIncr.Dock = System.Windows.Forms.DockStyle.Top;
+            this.weightIncr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.weightIncr.Location = new System.Drawing.Point(2, 15);
+            this.weightIncr.Margin = new System.Windows.Forms.Padding(2);
+            this.weightIncr.Name = "weightIncr";
+            this.weightIncr.Size = new System.Drawing.Size(88, 26);
+            this.weightIncr.TabIndex = 1;
+            this.weightIncr.Text = "+";
+            this.weightIncr.UseVisualStyleBackColor = true;
+            this.weightIncr.Click += new System.EventHandler(this.weightIncr_Click);
+            // 
+            // weightLbl
+            // 
+            this.weightLbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.weightLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Bold);
+            this.weightLbl.Location = new System.Drawing.Point(2, 15);
+            this.weightLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.weightLbl.Name = "weightLbl";
+            this.weightLbl.Size = new System.Drawing.Size(88, 87);
+            this.weightLbl.TabIndex = 0;
+            this.weightLbl.Text = "20";
+            this.weightLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -178,6 +242,58 @@
             this.label7.Size = new System.Drawing.Size(83, 13);
             this.label7.TabIndex = 21;
             this.label7.Text = "Tipo di esercizio";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.heightDecr);
+            this.groupBox3.Controls.Add(this.heightIncr);
+            this.groupBox3.Controls.Add(this.heightLbl);
+            this.groupBox3.Location = new System.Drawing.Point(315, 141);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Size = new System.Drawing.Size(92, 104);
+            this.groupBox3.TabIndex = 19;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Altezza [m]";
+            // 
+            // heightDecr
+            // 
+            this.heightDecr.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.heightDecr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.heightDecr.Location = new System.Drawing.Point(2, 76);
+            this.heightDecr.Margin = new System.Windows.Forms.Padding(2);
+            this.heightDecr.Name = "heightDecr";
+            this.heightDecr.Size = new System.Drawing.Size(88, 26);
+            this.heightDecr.TabIndex = 2;
+            this.heightDecr.Text = "-";
+            this.heightDecr.UseVisualStyleBackColor = true;
+            this.heightDecr.Click += new System.EventHandler(this.heightDecr_Click);
+            // 
+            // heightIncr
+            // 
+            this.heightIncr.Dock = System.Windows.Forms.DockStyle.Top;
+            this.heightIncr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.heightIncr.Location = new System.Drawing.Point(2, 15);
+            this.heightIncr.Margin = new System.Windows.Forms.Padding(2);
+            this.heightIncr.Name = "heightIncr";
+            this.heightIncr.Size = new System.Drawing.Size(88, 26);
+            this.heightIncr.TabIndex = 1;
+            this.heightIncr.Text = "+";
+            this.heightIncr.UseVisualStyleBackColor = true;
+            this.heightIncr.Click += new System.EventHandler(this.heightIncr_Click);
+            // 
+            // heightLbl
+            // 
+            this.heightLbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.heightLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Bold);
+            this.heightLbl.Location = new System.Drawing.Point(2, 15);
+            this.heightLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.heightLbl.Name = "heightLbl";
+            this.heightLbl.Size = new System.Drawing.Size(88, 87);
+            this.heightLbl.TabIndex = 0;
+            this.heightLbl.Text = "1,2";
+            this.heightLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // exerciseBox
             // 
@@ -401,7 +517,7 @@
             this.groupBox2.Size = new System.Drawing.Size(73, 104);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Offset";
+            this.groupBox2.Text = "Offset [Kg]";
             // 
             // offDecr
             // 
@@ -675,6 +791,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.countDownBox.ResumeLayout(false);
             this.countDownBox.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -747,5 +865,13 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button weightDecr;
+        private System.Windows.Forms.Button weightIncr;
+        private System.Windows.Forms.Label weightLbl;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button heightDecr;
+        private System.Windows.Forms.Button heightIncr;
+        private System.Windows.Forms.Label heightLbl;
     }
 }
